@@ -1,20 +1,9 @@
 {% extends 'base.html' %}
 <h1> Home </h1>
-<!DOCTYPE html>
-<html lang="en">
-<head>   
-    {% block head %}
-    <title>Home</title>
-    {% endblock %}
-</head>
-<body>
-    {% block body %}
-    <h3>Vos points d'eau</h3>
-    <ul>
-        {% for number in numbers %}
-        <li>{{ number }}</li>
-        {% endfor %}
-    </ul>
-    {% endblock %}
-</body>
-</html>
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<h1>Home</h1>
+{% endblock %}
