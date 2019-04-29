@@ -4,4 +4,7 @@ def home(request):
     # L'ajout du dossier accounts/ permet d'eviter la confusion avec 
     # le nom de la page, qui pourrait exister deux fois. Django prendrai le premier
     # qu'il voit 
-    return render(request, 'accounts/login.html')
+    numbers = [1,2,3,4,5]
+    name = "Matisse"
+    args = {'name':name,'numbers':numbers}
+    return render(request, 'accounts/home.html', args)
