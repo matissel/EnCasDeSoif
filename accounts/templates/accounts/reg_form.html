@@ -1,11 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'base_generic.html' %}
 
-{% block body %}
-<h1> Register </h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-lg btn-primary outline" type="submit" name="button">Submit</button>
-</form>
+{% block content %}
+<div class="container">
+    <h1> Register </h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary outline" type="submit" name="button">Submit</button>
+    </form>
+</div>
 
 {% endblock %}

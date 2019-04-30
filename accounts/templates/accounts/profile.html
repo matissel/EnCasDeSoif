@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
-{% block head %}
+{% extends 'base_generic.html' %}
+{% block title %}
 <title>Profile</title>
 {% endblock %}
 
-{% block body %}
+{% block content %}
 <h1> {{user}}'s profile</h1>
     <p>Prénom :{{ user.first_name }}</p>
     <p>Nom : {{ user.last_name }}</p>   
