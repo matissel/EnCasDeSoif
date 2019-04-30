@@ -7,6 +7,9 @@ class UserProfile(models.Model):
     pseudo = models.CharField(max_length=100, default="")
     age = models.IntegerField(default=18)   
 
+    def __str__(self):
+        return self.pseudo
+
 def create_profile(sender,**kwargs):
     # If this user has been created
     if kwargs['created']:
