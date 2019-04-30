@@ -1,30 +1,8 @@
+{% extends "base_generic.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% block head %}
-    {% load static %} 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    {% load static %} 
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>    
+{% block title %}<title>Welcome - En cas de soif</title>{% endblock %}
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>En cas de soif</title>
-    {% endblock %}
-</head>
-
-<body>
-    <div class="jumbotron">
-            <h1>Bienvenue sur En cas de soif {{ name}}  ! </h1>
-    </div>
-    <div id="menu">
-        <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'login' %}">Login</a>
-        
-    </div>
-    {% block body %}
-    {% endblock %}
-</body>
-</html>
+{% block content %}
+  <h1>Welcome</h1>
+  <p>Bienvenue sur En Cas De Soif !</p>
+{% endblock %}
