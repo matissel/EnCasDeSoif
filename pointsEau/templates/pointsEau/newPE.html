@@ -1,0 +1,7 @@
+<h1> Nouveau point d'eau </h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-lg btn-primary outline" type="submit" name="button">Créer</button>
+</form>  

@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
     #path('', RedirectView.as_view(url='/account/', permanent=True)),
+    path('pointsEau/', include('pointsEau.urls')),
+    
 ]
