@@ -10,5 +10,5 @@ urlpatterns = [
     path('profile/', views.view_profile, name='view_profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
 
-    path('password_change/', PasswordChangeView.as_view( template_name='accounts/password_change_form.html'), name="password_change"),
+    path('password_change/', PasswordChangeView.as_view(template_name='accounts/password_change_form.html'), name="password_change"),
 ]
