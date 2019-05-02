@@ -9,18 +9,14 @@ OK_STRING    = "[OK]"
 ERROR_STRING = "[ERROR]"
 WARN_STRING  = "[WARNING]"
 
-test: lint format
+test: format
 	@echo "--> Running tests"
-	@echo "NO TESTS TO RUN !"
-	@echo "$(WARN_COLOR)$(WARN_STRING)$(NO_COLOR)"
+	@python manage.py test --parallel
+	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
 format:
 	@echo "--> Formating"
 	@autopep8 --ignore=E501 -a -i $(shell find `pwd` -name "*.py")
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
-lint:
-	@echo "--> Running lint"
-	@pylint --load-plugins pylint_django -E $(shell find `pwd` -name "*.py")
-	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-.PHONY: test lint format
+.PHONY: format test 
