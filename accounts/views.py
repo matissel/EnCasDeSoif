@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from pointsEau.models import PointEau
 
 def home(request):
     # L'ajout du dossier accounts/ permet d'eviter la confusion avec
@@ -18,7 +18,11 @@ def home(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    existingPoints = PointEau.objects.all()
+    args = {
+        'pointsEau' : existingPoints
+    }
+    return render(request, 'index.html',args)
 
 
 def register(request):

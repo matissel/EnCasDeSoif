@@ -7,9 +7,9 @@ def addPE(request):
         form = PointEauForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/account/profile')
-        else:
             return redirect('/pointsEau')
+        else:
+            return redirect('/pointsEau/add')
     else:
         form = PointEauForm()
         args = {'form': form}
