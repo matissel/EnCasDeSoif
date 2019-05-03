@@ -19,8 +19,11 @@ def home(request):
 
 def index(request):
     existingPoints = PointEau.objects.all()
+    mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
+
     args = {
-        'pointsEau' : existingPoints
+        'pointsEau' : existingPoints,
+        'mapbox_access_token' : mapbox_access_token
     }
     return render(request, 'index.html',args)
 
