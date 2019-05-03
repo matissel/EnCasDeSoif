@@ -6,6 +6,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pointsEau.models import PointEau
+import json
+
 
 def home(request):
     # L'ajout du dossier accounts/ permet d'eviter la confusion avec

@@ -1,40 +1,15 @@
 {% extends "base_generic.html" %}
 {% load static %} 
-{% block title %}<title>Welcome - En cas de soif</title>
+{% block title %}<title>Welcome - En cas de soif</title>{% endblock %}
 
-<style>
-.marker {
-    background-image: url("{% static 'water.png' %}");
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    }
-
-.mapboxgl-popup {
-    max-width: 200px;
-}
-.mapboxgl-popup-content {
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-}
-
-#map {
-    width : 1000px;
-    height : 500px;
-    position:relative;
-}
-</style>
-{% endblock %}
 {% block scripts %} 
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<link href="{% static 'css/mapStyle.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
     <h1>Bienvenue sur En Cas de Soif</h1>
-
 
     <div id='map'></div>
     <script>
