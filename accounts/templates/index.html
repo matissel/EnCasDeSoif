@@ -10,7 +10,7 @@
 
 {% block content %}
     <h1>Bienvenue sur En Cas de Soif</h1>
-
+    <p>L'ojet : </p>
     <div id='map'></div>
     <script>
         
@@ -31,7 +31,7 @@
             type: 'Feature',
             geometry: {
             type: 'Point',
-            coordinates: [-122.414, 37.776]
+            coordinates: ["{{instance.long}}","{{instance.lat}}"]
             },
             properties: {
             title: 'Mapbox',

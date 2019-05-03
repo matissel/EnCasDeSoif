@@ -6,7 +6,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pointsEau.models import PointEau
-import json
+from django.core import serializers
 
 
 def home(request):
@@ -24,7 +24,7 @@ def index(request):
     mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
 
     args = {
-        'pointsEau' : existingPoints,
+        'pointsEau' : existingPoints[0],
         'mapbox_access_token' : mapbox_access_token
     }
     return render(request, 'index.html',args)
