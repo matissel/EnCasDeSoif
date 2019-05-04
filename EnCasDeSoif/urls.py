@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.views.generic.base import TemplateView
+from pointsEau.resources import PointEauResource
+
+# Define an api resource
+points_resource = PointEauResource()
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html') , name='index'),
@@ -24,5 +28,5 @@ urlpatterns = [
     path('account/', include('accounts.urls')),
     #path('', RedirectView.as_view(url='/account/', permanent=True)),
     path('pointsEau/', include('pointsEau.urls')),
-    
+    path('pointsAPI/', include(points_resource.urls)),    
 ]
