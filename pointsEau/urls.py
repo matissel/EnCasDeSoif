@@ -1,7 +1,7 @@
 from django.urls import path, include
-from . import views
+from .views import addPE, ListPointEauView
 
 urlpatterns = [
-    #path('', CARTE DES POINTS)
-    path('add/', views.addPE, name="newPE"),
+    path('add/', addPE, name="newPE"),
+    path('all/', ListPointEauView.as_view(), name="allpoints")
 ]
