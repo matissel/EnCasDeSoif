@@ -70,3 +70,8 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
+
+
+@login_required
+def logout(request):
+    return render(request, 'accounts/logout.html')

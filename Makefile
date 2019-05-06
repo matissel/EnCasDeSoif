@@ -14,9 +14,14 @@ test: format
 	@python manage.py test --parallel
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-format:
+format: migrations
 	@echo "--> Formating"
 	@autopep8 --ignore=E501 -a -i $(shell find `pwd` -name "*.py")
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-.PHONY: format test 
+migrations:
+	@echo "--> Makemigrations"
+	@python manage.py makemigrations 
+	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
+
+.PHONY: migrations format test 
