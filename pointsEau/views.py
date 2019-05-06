@@ -30,3 +30,13 @@ class ListPointEauView(APIView):
         serializer = PointEauSerializer(allpe, many=True)
         return Response({"allpe":serializer.data})
     
+
+def afficherPointsEau(request):
+    allpe = PointEau.objects.all()
+    serializer = PointEauSerializer(allpe, many=True)
+
+    args = {
+        'points' : serializer.data,
+    }
+
+    return render(request, 'pointsEau/testmap.html',  args)
