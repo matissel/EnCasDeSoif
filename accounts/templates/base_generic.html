@@ -3,6 +3,7 @@
 <head>
     {% load static %} 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>    
     <meta charset="UTF-8">
@@ -22,9 +23,13 @@
         <div class="navbar-collapse collapse" id="ECDSnavbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'index' %}">Acceuil<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'index' %}">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ajouter un point d'eau</a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Ajouter un point d'eau</a>
                 </li>
@@ -33,6 +38,18 @@
                     <a class="nav-link" href="#">A propos</a>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav  my-2 my-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_profile' %}">Mon profil</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav  my-2 my-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+                    </li>
+                </ul>
+            {% else %}
             <ul class="navbar-nav  my-2 my-md-0">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Se connecter</a>
@@ -44,6 +61,7 @@
                     <a class="nav-link" href="{% url 'register' %}">S'enregistrer</a>
                 </li>
             </ul>
+            {% endif%}
 
         </div>
     </nav>

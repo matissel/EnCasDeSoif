@@ -4,9 +4,21 @@
 {% endblock %}
 
 {% block content %}
+
 <h1> {{user}}'s profile</h1>
-    <p>Prénom :{{ user.first_name }}</p>
-    <p>Nom : {{ user.last_name }}</p>   
-    <p>Email : {{ user.email }}</p>
-    
+<div class="container">
+    <div class="row">
+            <div class="col-sm-8">
+                <p>Prénom :{{ user.first_name }}</p>
+                <p>Nom : {{ user.last_name }}</p>
+                <p>Email : {{ user.email }}</p>
+            </div>
+            <div class="col-sm-4">
+                <a href="{% url 'edit_profile' %}"><button type="button" class="btn btn-primary">Modifier mon profil</button></a>
+            </div>
+    </div>
+
+
+</div>
+
 {% endblock %}

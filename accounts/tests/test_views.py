@@ -8,7 +8,7 @@ class SimpleTestViews(TestCase):
 
     def setUp(self):
         publicViews = ["index", "login", "register"]
-        loggedOnlyViews = ["logout", "edit_profile", "view_profile", "password_change"]
+        loggedOnlyViews = ["logout", "edit_profile", "view_profile", "change_password"]
         self.publicUrls = list()
         self.loggedUrls = list()
         for views in publicViews:

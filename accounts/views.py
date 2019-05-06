@@ -4,6 +4,8 @@ from accounts.forms import RegistrationForm, EditProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import logout
 
 
 def home(request):
@@ -59,19 +61,22 @@ def edit_profile(request):
 @login_required
 def change_password(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=request.user)
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect('/account/profile')
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('/account')
         else:
-            return redirect('/account/change-password')
+            messages.error(request, 'Please correct the error below.')
     else:
-        form = PasswordChangeForm(user=request.user)
-        args = {'form': form}
-        return render(request, 'accounts/change_password.html', args)
+        form = PasswordChangeForm(request.user)
+    return render(request, 'accounts/change_password.html', {
+        'form': form
+    })
 
 
 @login_required
-def logout(request):
-    return render(request, 'accounts/logout.html')
+def view_logout(request):
+    logout(request)
+    return render(request, 'index.html')
