@@ -3,6 +3,9 @@ from .forms import PointEauForm
 from rest_framework import generics 
 from .serializers import PointEauSerializer
 from .models import PointEau
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 
 # Create your views here.
 def addPE(request):
@@ -19,6 +22,11 @@ def addPE(request):
     return render(request, 'pointsEau/newPE.html', args)
 
 
-class ListPointEauView(generics.ListAPIView):
-    queryset = PointEau.objects.all()
-    serializer_class = PointEauSerializer
+class ListPointEauView(APIView):
+    #queryset = PointEau.objects.all()
+    #serializer_class = PointEauSerializer
+    def get(self,request):
+        allpe = PointEau.objects.all()
+        serializer = PointEauSerializer(allpe, many=True)
+        return Response({"allpe":serializer.data})
+    
