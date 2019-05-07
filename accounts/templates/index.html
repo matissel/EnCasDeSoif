@@ -40,7 +40,8 @@
         }]
         };
 
-    
+    var allpe = '{{ allpe }}'
+    console.log(allpe)
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w';
     //mapboxgl.accessToken = "{{ mapbox_access_token }}"
@@ -78,6 +79,7 @@
         {% endfor %}
     </ul>
     
+    <p>{{ allpe }}</p>
 
 
 {% endblock %}
