@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import PointEauForm
 from .models import PointEau
 
-# Create your views here.
+
 def addPE(request):
     if request.method == 'POST':
         form = PointEauForm(request.POST)

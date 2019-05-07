@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view, renderer_classes
 import json
-from django.http import  JsonResponse
+from django.http import JsonResponse
 from rest_framework import generics
 from .serializers import PointEauSerializer
 from .models import PointEau
@@ -19,11 +19,10 @@ def afficherToutPoints(request, format=None):
     }
     return Response(args)
 
-# points utilisateur 
+# points utilisateur
 
-# post nouveau point 
+# post nouveau point
 
 # modifier point eau
 
-# supprimer point eau 
-
+# supprimer point eau

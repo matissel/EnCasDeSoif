@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'pointsEau',
-    'rest_framework'
+    'rest_framework',
+    'EnCasDeSoif'
 ]
 
 MIDDLEWARE = [
