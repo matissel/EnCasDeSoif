@@ -69,6 +69,15 @@
     
     </script>
 
+    <ul>
+        {% for p in allpe %}
+        <li>{{ p.nom }}</li>
+        <li>{{ p.lat }}</li>
+        <li>{{ p.long }}</li>
+        <li>{{ p.desc }}</li>
+        {% endfor %}
+    </ul>
+    
 
 
 {% endblock %}
