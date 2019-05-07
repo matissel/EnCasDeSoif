@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Matissou/EnCasDeSoif.svg?branch=master)](https://travis-ci.com/Matissou/EnCasDeSoif)
+
 # EnCasDeSoif
 
 Bienvenue sur **En cas de soif**. Cette application web permet de trouver les points d'eaux les plus proches.
