@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pointsEau.models import PointEau
 from django.core import serializers
-import requests
 
 
 def home(request):
