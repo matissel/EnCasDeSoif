@@ -1,10 +1,11 @@
-from django.forms import ModelForm 
+from django.forms import ModelForm
 from .models import PointEau
+
 
 class PointEauForm(ModelForm):
     class Meta:
         model = PointEau
-        fields = ['nom', 'lat','long', 'desc']
+        fields = ['nom', 'lat', 'long', 'desc']
 
     def save(self, commit=True):
         pointEau = super(ModelForm, self).save(commit=False)
@@ -14,5 +15,5 @@ class PointEauForm(ModelForm):
         pointEau.desc = self.cleaned_data['desc']
         if commit:
             pointEau.save()
-        
+
         return pointEau

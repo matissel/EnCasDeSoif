@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .forms import PointEauForm
-from rest_framework import generics 
+from rest_framework import generics
 from .serializers import PointEauSerializer
 from .models import PointEau
 from rest_framework.response import Response
@@ -27,22 +27,23 @@ class ListPointEauView(APIView):
     #queryset = PointEau.objects.all()
     #serializer_class = PointEauSerializer
     renderer_classes = (JSONRenderer, )
-    def get(self,request):
+
+    def get(self, request):
         allpe = PointEau.objects.all()
         serializer = PointEauSerializer(allpe, many=True)
-        #return Response({"allpe":serializer.data})
+        # return Response({"allpe":serializer.data})
         args = {
-            'allpe':serializer.data
+            'allpe': serializer.data
         }
-        return render(request, 'index.html',  args)
-    
+        return render(request, 'index.html', args)
+
 
 def afficherPointsEau(request):
     allpe = PointEau.objects.all()
     serializer = PointEauSerializer(allpe, many=True)
 
     args = {
-        'points' : serializer.data,
+        'points': serializer.data,
     }
 
-    return render(request, 'index.html',  args)
+    return render(request, 'index.html', args)
