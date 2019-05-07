@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+{% block title %}
+<title>Nouveau point</title>
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+<div class="container">
+    <h1> Nouveau point d'eau </h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-lg btn-primary outline" type="submit" name="button">Créer</button>
+</div>
+</form>  
+{% endblock %}

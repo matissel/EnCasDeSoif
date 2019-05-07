@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from accounts.forms import RegistrationForm, EditProfileForm
 from django.contrib.auth.models import User
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import logout
+from pointsEau.models import PointEau
+from django.core import serializers
 
 
 def home(request):
@@ -19,7 +20,21 @@ def home(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    existingPoints = PointEau.objects.all()
+    mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
+    if len(existingPoints) > 0:
+
+        args = {
+            'pointsEau': existingPoints[0],
+            'mapbox_access_token': mapbox_access_token
+        }
+    else:
+        args = {
+            'mapbox_access_token': mapbox_access_token
+
+        }
+
+    return render(request, 'index.html', args)
 
 
 def register(request):
