@@ -5,5 +5,5 @@ python:
 install:
   - pip install Django
   - pip install autopep8
-  - pip install rest_framework
+  - pip install djangorestframework
 script: make
