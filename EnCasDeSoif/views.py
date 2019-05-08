@@ -10,6 +10,7 @@ def login_redirect(request):
 
 def index(request):
     existingPoints = PointEau.objects.all()
+    # TODO : sécuriser la clé de l'API
     mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
     url = "http://localhost:8000/api/all"
     toutLesPoints = requests.get(url=url).json()
@@ -19,6 +20,7 @@ def index(request):
         'features': []
     }
 
+    # Parcours de tous les points recus par la requete pour la vue
     for point in toutLesPoints['allpe']:
 
         nouveauPoint = {
@@ -32,6 +34,7 @@ def index(request):
                 'description': point['desc']
             }
         }
+        # Ajout a un objet JSON pour la vue
         geojson['features'].append(nouveauPoint)
 
     args = {
