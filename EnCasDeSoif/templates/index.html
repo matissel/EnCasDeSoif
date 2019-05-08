@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+{% load static %} 
+{% block title %}<title>Welcome - En cas de soif</title>{% endblock %}
+
+{% block scripts %} 
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<link href="{% static 'css/mapStyle.css' %}" rel="stylesheet">
+<script src="{% static 'js/map.js' %}"></script>
+<script>window.onload = function(){addMap({{ allpe|safe }});};</script>
+{% endblock %}
+
+{% block content %}
+    <h1>Bienvenue sur En Cas de Soif</h1>
+    <!-- Ne pas toucher cette div. Elle sert à afficher la carte (JS)-->
+    <div id='map'></div>
+
+    <p> {{ lurl }}</p>
+{% endblock %}

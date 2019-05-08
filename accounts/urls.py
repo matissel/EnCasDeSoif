@@ -2,9 +2,9 @@ from django.conf import settings
 from django.urls import path, include
 from django.contrib.auth.views import LogoutView, LoginView, LogoutView, PasswordResetView, PasswordChangeView, PasswordChangeDoneView, PasswordResetDoneView, PasswordResetCompleteView, PasswordResetConfirmView
 from . import views
-
+import EnCasDeSoif.views as ec
 urlpatterns = [
-    path('', views.index, name="index"),
+    path('', ec.index),
     path('login/', LoginView.as_view(template_name='accounts/login.html'), name="login"),
     path('logout/', views.view_logout, name='logout'),
     path('register/', views.register, name="register"),

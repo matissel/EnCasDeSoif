@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 class PointEau(models.Model):
     nom = models.CharField(blank=False, default='Name', max_length=100)
-    long = models.FloatField()
-    lat = models.FloatField()
+    long = models.DecimalField(max_digits=10, decimal_places=8)
+    lat = models.DecimalField(max_digits=10, decimal_places=8)
     desc = models.CharField(blank=False, default='Description', max_length=255)
     owner = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 
