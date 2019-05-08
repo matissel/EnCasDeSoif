@@ -6,4 +6,5 @@ install:
   - pip install Django
   - pip install autopep8
   - pip install djangorestframework
+  - pip install requests
 script: make
