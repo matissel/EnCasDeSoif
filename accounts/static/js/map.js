@@ -75,7 +75,7 @@ function addMap(allpe){
         filter: ["!", ["has", "point_count"]],
         paint: {
         "circle-color": "#11b4da",
-        "circle-radius": 4,
+        "circle-radius": 8,
         "circle-stroke-width": 1,
         "circle-stroke-color": "#fff"
         }
@@ -118,7 +118,7 @@ function addMap(allpe){
              
             new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML("<h3>" + description + "</h3><p>" +  nom + "</p>")
+            .setHTML("<h3>" + nom + "</h3><p>" +  description + "</p>")
             .addTo(map);
             });
 
