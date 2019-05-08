@@ -9,7 +9,9 @@ OK_STRING    = "[OK]"
 ERROR_STRING = "[ERROR]"
 WARN_STRING  = "[WARNING]"
 
-test: format
+build: format test
+
+test: migrations
 	@echo "--> Running tests"
 	@python manage.py test --parallel
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
@@ -24,4 +26,4 @@ migrations:
 	@python manage.py makemigrations 
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-.PHONY: migrations format test 
+.PHONY: build migrations format test 
