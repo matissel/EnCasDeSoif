@@ -7,7 +7,7 @@ class PointEau(models.Model):
     long = models.FloatField()
     lat = models.FloatField()
     desc = models.CharField(blank=False, default='Description', max_length=255)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 
     def __str__(self):
         return '''--Point eau --
