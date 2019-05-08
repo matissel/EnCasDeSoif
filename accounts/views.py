@@ -19,33 +19,15 @@ def home(request):
     return render(request, 'home.html', args)
 
 
-def index(request):
-    existingPoints = PointEau.objects.all()
-    mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
-    if len(existingPoints) > 0:
-
-        args = {
-            'pointsEau': existingPoints[0],
-            'mapbox_access_token': mapbox_access_token
-        }
-    else:
-        args = {
-            'mapbox_access_token': mapbox_access_token
-
-        }
-
-    return render(request, 'index.html', args)
-
-
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             # Sauvegarde dans la base
             form.save()
-            return redirect('/account')
+            return redirect('/')
         else:
-            return redirect('/account')
+            return redirect('/')
     else:
         form = RegistrationForm()
 
