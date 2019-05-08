@@ -12,7 +12,7 @@ def index(request):
     existingPoints = PointEau.objects.all()
     # TODO : sécuriser la clé de l'API
     mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
-    url = "http://localhost:8000/api/all"
+    url = "http://127.0.0.1:8000/api/all"
     toutLesPoints = requests.get(url=url).json()
 
     geojson = {
