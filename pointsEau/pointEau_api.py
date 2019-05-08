@@ -17,7 +17,7 @@ def afficherToutPoints(request, format=None):
     args = {
         'allpe': serializer.data
     }
-    return Response(args)
+    return JsonResponse(args)
 
 # points utilisateur
 

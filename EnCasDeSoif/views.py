@@ -2,6 +2,8 @@ from django.shortcuts import redirect
 from pointsEau.models import PointEau
 from django.shortcuts import render, redirect
 import requests
+from pointsEau.pointEau_api import afficherToutPoints
+import json
 
 
 def login_redirect(request):
@@ -12,8 +14,7 @@ def index(request):
     existingPoints = PointEau.objects.all()
     # TODO : sécuriser la clé de l'API
     mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
-    url = "http://127.0.0.1:8000/api/all"
-    toutLesPoints = requests.get(url=url).json()
+    toutLesPoints = json.loads(afficherToutPoints(request).content)
 
     geojson = {
         'type': 'FeatureCollection',
@@ -39,6 +40,7 @@ def index(request):
 
     args = {
         'mapbox_access_token': mapbox_access_token,
-        'allpe': geojson
+        'allpe': geojson,
+        'lurl': request.build_absolute_uri
     }
     return render(request, 'index.html', args)
