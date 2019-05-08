@@ -6,80 +6,12 @@
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 <link href="{% static 'css/mapStyle.css' %}" rel="stylesheet">
+<script src="{% static 'js/map.js' %}"></script>
+<script>window.onload = function(){addMap({{ allpe|safe }});};</script>
 {% endblock %}
 
 {% block content %}
     <h1>Bienvenue sur En Cas de Soif</h1>
-    <p>L'objet : </p>
-    <p id="results"> </p>
     <div id='map'></div>
-    <script type="text/javascript">
-      /*  
-    var geojson = {
-        type: 'FeatureCollection',
-        features: [{
-            type: 'Feature',
-            geometry: {
-            type: 'Point',
-            coordinates: [5.724524, 45.188529]
-            },
-            properties: {
-            title: 'Eau',
-            description: 'Une super description'
-            }
-        },
-        {
-            type: 'Feature',
-            geometry: {
-            type: 'Point',
-            coordinates: ["{{instance.long}}","{{instance.lat}}"]
-            },
-            properties: {
-            title: 'Mapbox',
-            description: 'San Francisco, California'
-            }
-        }]
-        };
-        */
-    var geojson = {{ allpe|safe }};
 
-    
-    document.getElementById('results').appendChild(document.createTextNode(geojson))
-        
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w';
-    //mapboxgl.accessToken = "{{ mapbox_access_token }}"
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/matissou/cjv81ltxb0drl1fo5f2as7tgk',
-        center: [5.761094, 45.178086],
-        zoom: 12.3
-        });
-    
-    
-    geojson.features.forEach(function(marker) {
-
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'marker';
-
-        // make a marker for each feature and add it to the map
-        new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .setPopup(new mapboxgl.Popup({offset: 25}) // add popups
-                .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-            .addTo(map);
-    });
-            
-    
-    </script>
-
-    <ul>
-        {% for p in allpe %}
-        <li>{{ p.nom }}</li>
-        <li>{{ p.lat }}</li>
-        <li>{{ p.long }}</li>
-        <li>{{ p.desc }}</li>
-        {% endfor %}
-    </ul>
-    
 {% endblock %}
