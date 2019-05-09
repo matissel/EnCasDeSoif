@@ -22,7 +22,8 @@ format: migrate
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
 migrate:
-	@echo "--> Migrate"
+	@echo "--> Migrations"
+	@python manage.py makemigrations
 	@python manage.py migrate --run-syncdb
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
