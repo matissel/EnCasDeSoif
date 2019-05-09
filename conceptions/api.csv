@@ -1,0 +1,4 @@
+Path ; GET ; POST ; PUT ; DELETE
+account/login ; / ; / ; / ; /
+pointsEau/all ; / ; / ; / ; /
+pointsEau/<$id> ; / ; / ; / ; /

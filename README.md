@@ -22,6 +22,16 @@ docsify serve docs
 
 > Go to localhost:3000
 
+[//]: <> (Pour générer le tableau à partir du CSV : https://www.tablesgenerator.com/markdown_tables)
+#### API
+Il est possible d'utiliser EnCasDeSoif en utilisant l'API REST suivante. Cette API est accessible via l'url `<baseURL>/api/<path>`
+
+|      <path\>    | GET | POST | PUT | DELETE |
+|:---------------:|:---:|:----:|:---:|:------:|
+|  account/login  |  /  |   /  |  /  |    /   |
+|  pointsEau/all  |  /  |   /  |  /  |    /   |
+| pointsEau/<$id> |  /  |   /  |  /  |    /   |
+
 ### Contribution 
 1. Fork le projet et faire une PR
 2. Contribuer aux points d'eau sur l'application
