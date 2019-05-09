@@ -22,8 +22,9 @@ format: migrate
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
 migrate:
-	@echo "--> Migrate"
-	@python manage.py migrate 
+	@echo "--> Migrations"
+	@python manage.py makemigrations
+	@python manage.py migrate --fake-initial --run-syncdb 
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
 clean:
