@@ -11,9 +11,11 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Bienvenue sur En Cas de Soif</h1>
-    <!-- Ne pas toucher cette div. Elle sert à afficher la carte (JS)-->
-    <div id='map'></div>
-
-    <p> {{ lurl }}</p>
+    <div class="container">
+        <h1>Bienvenue sur En Cas de Soif</h1>
+        <div class="row">
+            <!-- Ne pas toucher cette div. Elle sert à afficher la carte (JS)-->
+            <div class="col-xs-12" id='map'></div>
+        </div>
+    </div>
 {% endblock %}
