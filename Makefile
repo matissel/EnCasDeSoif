@@ -11,19 +11,25 @@ WARN_STRING  = "[WARNING]"
 
 build: format test
 
-test: migrations
+test: migrate
 	@echo "--> Running tests"
 	@python manage.py test --parallel
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-format: migrations
+format: migrate
 	@echo "--> Formating"
 	@autopep8 --ignore=E501 -a -i $(shell find `pwd` -name "*.py")
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-migrations:
-	@echo "--> Makemigrations"
-	@python manage.py makemigrations 
+migrate:
+	@echo "--> Migrate"
+	@python manage.py migrate 
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-.PHONY: build migrations format test 
+clean:
+	@echo "--> Clean"
+	@rm -rf $(shell find `pwd` -name "__pycache__")
+	@rm -f `pwd`/db.sqlite3
+	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
+
+.PHONY: build migrate format test 
