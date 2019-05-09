@@ -27,10 +27,15 @@ migrate:
 	@python manage.py migrate --fake-initial --run-syncdb 
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
+populateDB:
+	@echo "--> Populating database"
+	@python manage.py loaddata users pointsEau
+	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
+
 clean:
 	@echo "--> Clean"
 	@rm -rf $(shell find `pwd` -name "__pycache__")
 	@rm -f `pwd`/db.sqlite3
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-.PHONY: build migrate format test 
+.PHONY: build migrate format test populateDB
