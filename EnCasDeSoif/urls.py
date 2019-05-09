@@ -24,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
     path('pointsEau/', include('pointsEau.urls')),
-    path('api/', include('pointsEau.urls'), name="api")
+    path('api/pointseau/', include('pointsEau.api.urls'), name="api-pointseau")
 ]

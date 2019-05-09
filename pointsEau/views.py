@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import PointEauForm
 from .models import PointEau
+from rest_framework import generics 
+from pointsEau.models import PointEau
+from .api.serializers import PointEauSerializer
 
 
 def addPE(request):
@@ -15,3 +18,4 @@ def addPE(request):
         form = PointEauForm()
         args = {'form': form}
     return render(request, 'pointsEau/newPE.html', args)
+
