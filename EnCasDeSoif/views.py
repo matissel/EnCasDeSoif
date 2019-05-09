@@ -48,9 +48,11 @@ def index(request):
     }
     return render(request, 'index.html', args)
 
+
 def init(request):
-    sampleUser = User.objects.get(username='sampleUser')
-    if (sampleUser == None):
+    try:
+        sampleUser = User.objects.get(username='sampleUser')
+    except BaseException:
         sampleUser = User.objects.create_user(username='sampleUser', email='sample.user@sampleMail.com', password='samplePassword')
 
     PointEau.objects.create(nom="Point eau 1", lat=43.09, long=34.00, desc="Point eau 1", owner=sampleUser)
