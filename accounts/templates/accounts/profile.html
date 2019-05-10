@@ -9,18 +9,23 @@
     <div class="row justify-content-center">
         <h1> {{user}}'s profile</h1>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <p>Prénom :{{ user.first_name }}</p>
-            <p>Nom : {{ user.last_name }}</p>
-            <p>Email : {{ user.email }}</p>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPrenom">Prénom</label>
+                <input type="text" readonly class="form-control" id="inputPrenom" value="{{ user.first_name }}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputNom">Nom</label>
+                <input type="text" readonly class="form-control" id="inputNom" value="{{ user.last_name }}">
+            </div>
         </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <a href="{% url 'edit_profile' %}"><button type="button" class="btn btn-primary">Modifier mon profil</button></a>
+        <div class="form-group">
+            <label for="staticEmail">Email</label>
+            <input type="text" readonly class="form-control" id="inputEmail" value="{{ user.email }}">
         </div>
-    </div>
+        <a href="{% url 'edit_profile' %}"><button type="button" class="btn btn-primary">Modifier mon profil</button></a>
+    </form>
 </div>
 
 {% endblock %}
