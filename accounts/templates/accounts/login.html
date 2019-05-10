@@ -1,21 +1,20 @@
 {% extends "base_generic.html" %}
 
 {% block title %}<title>Login - En cas de soif</title>{% endblock %}
+{% block styles %} 
+{% load static %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
+<div class="container text-center">
+<h1>Bienvenue </h1>
+    <form class="form-signin" method="post">
+        <h3 class="h3 mb-3 font-weight-normal">Connectez-vous</h3>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="button">Se connecter</button>
+    </form>  
+</div>
 
-<div class="container login-container">
-        <h1>Bienvenue </h1>
-        <div class="row">
-            <div class="col-md-6 login-form-1">
-                <h3>Connectez-vous</h3>
-                <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button class="btn btn-lg btn-primary outline" type="submit" name="button">Se connecter</button>
-                    </form>  
-            </div>
-        
-        </div>
-    </div>
 {% endblock %}
