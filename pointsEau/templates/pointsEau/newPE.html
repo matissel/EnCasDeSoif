@@ -4,13 +4,36 @@
 {% endblock %}
 
 {% block content %}
-
-<form method="post">
 <div class="container">
-    <h1> Nouveau point d'eau </h1>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-lg btn-primary outline" type="submit" name="button">Créer</button>
+    {{ form.non_field_errors }}
+    <div class="row justify-content-center">
+        <h1> Nouveau point d'eau </h1>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-xs-6 col-md">
+                {{ form.nom.errors }}
+                <label for="{{ form.nom.id_for_label }}">Nom</label>
+                <input type="text" name="{{ form.nom.name }}" class="form-control" id="{{ form.nom.id_for_label }}" placeholder="Fontaine VH">
+            </div>
+            <div class="form-group col-xs-6 col-md">
+                {{ form.lat.errors }}
+                <label for="{{ form.lat.id_for_label }}">Latitude</label>
+                <input type="text" class="form-control" name="{{ form.lat.name }}" id="{{ form.lat.id_for_label }}" placeholder="41.657">
+            </div>
+            <div class="form-group col-md">
+                    {{ form.long.errors }}
+                    <label for="{{ form.long.id_for_label }}">Longitude</label>
+                    <input type="text" class="form-control" name="{{ form.long.name }}" id="{{ form.long.id_for_label }}" placeholder="42.00998">
+                </div>
+        </div>
+        <div class="form-group">
+            {{ form.desc.errors }}
+            <label for="{{ form.desc.id_for_label }}">Description</label>
+            <textarea type="text" class="form-control" name="{{ form.desc.name }}" id="{{ form.desc.id_for_label }}" placeholder="Une jolie fontaine où il est possible de s'abreuver sans modération !" rows="4"></textarea>
+        </div>
+        <button type="submit" name="button" class="btn btn-primary">Créer</button>
+    </form>
 </div>
-</form>  
 {% endblock %}
