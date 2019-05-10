@@ -5,32 +5,31 @@
 
 {% block content %}
 <div class="container">
-    <div class="container">
-            {{ form.non_field_errors }}
-            <div class="row justify-content-center">
-                <h1> {{user}}'s profile</h1>
+    {{ form.non_field_errors }}
+    <div class="row justify-content-center">
+        <h1> {{user}}'s profile</h1>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form.first_name.errors }}
+                <label for="{{ form.first_name.id_for_label }}">Prénom</label>
+                <input type="text" name="{{ form.first_name.name }}" class="form-control" id="{{ form.first_name.id_for_label }}" value="{{ form.first_name.value }}">
             </div>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {{ form.first_name.errors }}
-                        <label for="{{ form.first_name.id_for_label }}">Prénom</label>
-                        <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}" value="{{ form.first_name.value }}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        {{ form.last_name.errors }}
-                        <label for="{{ form.last_name.id_for_label }}">Nom</label>
-                        <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}" value="{{ form.last_name.value }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ form.email.errors }}
-                    <label for="{{ form.email.id_for_label }}">Email</label>
-                    <input type="text" class="form-control" id="{{ form.email.id_for_label }}" value="{{ form.email.value }}">
-                </div>
-                <a href="{% url 'edit_profile' %}"><button type="submit" class="btn btn-primary">Valider</button></a>
-            </form>
+            <div class="form-group col-md-6">
+                {{ form.last_name.errors }}
+                <label for="{{ form.last_name.id_for_label }}">Nom</label>
+                <input type="text" class="form-control" name="{{ form.last_name.name }}" id="{{ form.last_name.id_for_label }}" value="{{ form.last_name.value }}">
+            </div>
         </div>
+        <div class="form-group">
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            <input type="text" class="form-control" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" value="{{ form.email.value }}">
+        </div>
+        <!-- TODO Support password change {{ form.password }} -->
+        <button type="submit" name="button" class="btn btn-primary">Valider</button>
+    </form>
 </div>
 {% endblock %}
