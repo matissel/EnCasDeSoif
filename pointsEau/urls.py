@@ -1,8 +1,8 @@
 from django.urls import path, include
-from .views import addPE
+from .views import addPE, init
 from .pointEau_api import afficherToutPoints
 
 urlpatterns = [
-    path('add/', addPE, name="newPE"),
-    path('all/', afficherToutPoints, name="allpoints"),
+    path('nouveau/', addPE, name="newPE"),
+    path('init', init, name="init")
 ]
