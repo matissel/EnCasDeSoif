@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.admin',
     'django.contrib.auth',
-  
+
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -111,7 +111,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES':
     (
-    #    'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        #    'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
     'DEFAULT_AUTHENTIFICATION_CLASSES': (
         'rest_framework_jwt.authentification.JSONWebTokenAuthentification',

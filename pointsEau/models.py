@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse 
+from django.urls import reverse
+
 
 class PointEau(models.Model):
     nom = models.CharField(blank=False, default='Name', max_length=100)
