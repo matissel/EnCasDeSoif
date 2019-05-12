@@ -8,6 +8,7 @@ from rest_framework import viewsets
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
+
 def addPE(request):
     if request.method == 'POST':
         form = PointEauForm(request.POST)
@@ -29,6 +30,7 @@ def addPE(request):
         form = PointEauForm()
 
     return render(request, 'pointsEau/newPE.html', {'form': form})
+
 
 def init(request):
     try:

@@ -109,15 +109,10 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
-    'DEFAULT_PERMISSION_CLASSES':
-    (
-        #    'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ),
-    'DEFAULT_AUTHENTIFICATION_CLASSES': (
-        'rest_framework_jwt.authentification.JSONWebTokenAuthentification',
-        'rest_framework.authentification.SessionAuthentification',
-        'rest_framework.authentification.BasicAuthentification'
+    'DEFAULT_PERMISSION_CLASSES': (
+        'pointsEau.api.permissions.IsGetOrIsAuthenticated',
     )
+
 }
 
 # Internationalization
