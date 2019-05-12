@@ -1,8 +1,11 @@
 from django.shortcuts import redirect
 from pointsEau.models import PointEau
 from django.shortcuts import render, redirect
-import requests
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 from pointsEau.pointEau_api import afficherToutPoints
+from pointsEau.models import PointEau
+
 import json
 
 

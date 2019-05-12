@@ -22,8 +22,14 @@ format: migrate
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
 migrate:
-	@echo "--> Migrate"
-	@python manage.py migrate 
+	@echo "--> Migrations"
+	@python manage.py makemigrations
+	@python manage.py migrate
+	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
+
+populateDB:
+	@echo "--> Populating database"
+	@python manage.py loaddata users pointsEau
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
 clean:
@@ -32,4 +38,4 @@ clean:
 	@rm -f `pwd`/db.sqlite3
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
-.PHONY: build migrate format test 
+.PHONY: build migrate format test populateDB
