@@ -1,6 +1,7 @@
-from .views import PointEauView
-from django.urls.conf import path, re_path
+from rest_framework import routers 
+from .views import PointEauViewSet
+from django.urls import path, include
 
-urlpatterns = [
-    re_path(r'^(?P<pk>\d+)/$', PointEauView.as_view(), name="pointeau" )
-]
+router = routers.DefaultRouter()
+router.register(r'pointseau', PointEauViewSet, base_name='pointseau')
+urlpatterns = router.urls
