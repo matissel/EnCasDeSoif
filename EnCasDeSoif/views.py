@@ -12,6 +12,8 @@ import json
 def login_redirect(request):
     return redirect('/account/login')
 
+def about(request):
+    return render(request, 'about.html', {'active' : 'about'})
 
 def index(request):
     existingPoints = PointEau.objects.all()
@@ -44,6 +46,7 @@ def index(request):
     args = {
         'mapbox_access_token': mapbox_access_token,
         'allpe': geojson,
-        'lurl': request.build_absolute_uri
+        'lurl': request.build_absolute_uri,
+        'active' : 'index'
     }
     return render(request, 'index.html', args)

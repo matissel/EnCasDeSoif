@@ -23,11 +23,11 @@
 
         <div class="navbar-collapse collapse" id="ECDSnavbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item {% if active == 'index' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'index' %}">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item {% if active == 'newPE' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'newPE' %}">Ajouter un point d'eau</a>
                 </li>
                 {% else %}
@@ -35,13 +35,13 @@
                     <a class="nav-link disabled" href="#">Ajouter un point d'eau</a>
                 </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">A propos</a>
+                <li class="nav-item {% if active == 'about' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'about' %}">A propos</a>
                 </li>
             </ul>
             {% if user.is_authenticated %}
             <ul class="navbar-nav  my-2 my-md-0">
-                <li class="nav-item">
+                <li class="nav-item {% if active == 'profile' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'view_profile' %}">Mon profil</a>
                 </li>
             </ul>
@@ -52,13 +52,13 @@
                 </ul>
             {% else %}
             <ul class="navbar-nav  my-2 my-md-0">
-                <li class="nav-item">
+                <li class="nav-item {% if active == 'login' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'login' %}">Se connecter</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav  my-2 my-md-0">
-                <li class="nav-item">
+                <li class="nav-item {% if active == 'register' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'register' %}">S'enregistrer</a>
                 </li>
             </ul>
