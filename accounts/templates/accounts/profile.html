@@ -5,20 +5,27 @@
 
 {% block content %}
 
-<h1> {{user}}'s profile</h1>
 <div class="container">
-    <div class="row">
-            <div class="col-sm-8">
-                <p>Prénom :{{ user.first_name }}</p>
-                <p>Nom : {{ user.last_name }}</p>
-                <p>Email : {{ user.email }}</p>
-            </div>
-            <div class="col-sm-4">
-                <a href="{% url 'edit_profile' %}"><button type="button" class="btn btn-primary">Modifier mon profil</button></a>
-            </div>
+    <div class="row justify-content-center">
+        <h1> {{user}}'s profile</h1>
     </div>
-
-
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPrenom">Prénom</label>
+                <input type="text" readonly class="form-control" id="inputPrenom" value="{{ user.first_name }}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputNom">Nom</label>
+                <input type="text" readonly class="form-control" id="inputNom" value="{{ user.last_name }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="staticEmail">Email</label>
+            <input type="text" readonly class="form-control" id="inputEmail" value="{{ user.email }}">
+        </div>
+        <a href="{% url 'edit_profile' %}"><button type="button" class="btn btn-primary">Modifier mon profil</button></a>
+    </form>
 </div>
 
 {% endblock %}
