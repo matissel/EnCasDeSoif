@@ -32,16 +32,16 @@ def register(request):
         form = RegistrationForm()
 
         args = {'form': form,
-            'active' : 'register'
-        }
+                'active': 'register'
+                }
         return render(request, 'accounts/reg_form.html', args)
 
 
 @login_required
 def view_profile(request):
     # Récupère l'utilisateur et le renvoie à la vue
-    args = {'user': request.user, 
-    'active' : 'profile'}
+    args = {'user': request.user,
+            'active': 'profile'}
     return render(request, 'accounts/profile.html', args)
 
 
@@ -55,7 +55,7 @@ def edit_profile(request):
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form,
-            'active' : 'profile'}
+                'active': 'profile'}
     return render(request, 'accounts/edit_profile.html', args)
 
 
@@ -74,7 +74,7 @@ def change_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'accounts/change_password.html', {
         'form': form,
-        'active' : 'profile'
+        'active': 'profile'
     })
 
 
@@ -82,5 +82,5 @@ def change_password(request):
 def view_logout(request):
     logout(request)
     return render(request, 'index.html', {
-        'active' : 'index'
+        'active': 'index'
     })

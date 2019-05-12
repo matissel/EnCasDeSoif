@@ -29,7 +29,7 @@ def addPE(request):
     else:
         form = PointEauForm()
 
-    return render(request, 'pointsEau/newPE.html', {'form': form, 'active' : 'newPE'})
+    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'newPE'})
 
 
 def init(request):
