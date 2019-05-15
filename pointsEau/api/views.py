@@ -2,8 +2,10 @@ from .serializers import PointEauSerializer
 from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from pointsEau.models import PointEau
 from rest_framework import status
+from django.http import Http404
 from rest_framework.response import Response
 from .permissions import IsGetOrIsAuthenticated
 
@@ -13,38 +15,40 @@ class PointEauViewSet(viewsets.ModelViewSet):
     serializer_class = PointEauSerializer
     permission_classes = [IsGetOrIsAuthenticated, ]
 
-@api_view(['GET', 'POST'])
-def points_eau_list(request):
-    if request.method == 'GET':
-        list_pe = PointEau.objects.all()
-        serializer = PointEauSerializer(list_pe, many=True)
+class PointsEauList(APIView):
+    def get(self, request, format=None):
+        snippets = PointEau.objects.all()
+        serializer = PointEauSerializer(snippets, many=True)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+    def post(self, request, format=None):
         serializer = PointEauSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def points_eau_detail(request, pk):
-    try:
-        pe = PointEau.objects.get(pk=pk)
-    except PointEau.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+class PointsEauDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return PointEau.objects.get(pk=pk)
+        except PointEau.DoesNotExist:
+            raise Http404
 
-    if request.method == 'GET':
-        serializer = PointEauSerializer(pe)
+    def get(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = PointEauSerializer(snippet)
         return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = PointEauSerializer(pe, data=request.data)
+    
+    def put(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = PointEauSerializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'DELETE':
-        pe.delete()
+    def delete(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
