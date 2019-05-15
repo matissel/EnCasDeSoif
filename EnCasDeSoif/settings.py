@@ -107,11 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'pointsEau.api.permissions.IsGetOrIsAuthenticated',
     )
-
 }
 
 # Internationalization
