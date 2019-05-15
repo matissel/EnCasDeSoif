@@ -20,7 +20,7 @@ class SimpleTestPointEau(TestCase):
 
     def testGetUserPointEau(self):
         user = User.objects.get(username='temporary')
-        ownerPeau = user.pointeau_set.all()
+        ownerPeau = user.pointseau.all()
         self.assertEqual(len(ownerPeau), 3, "Number of point eau owned by user should be equal to 3 but actual number is {0}".format(len(ownerPeau)))
 
     def testDeleteUserPointEauDeleted(self):
