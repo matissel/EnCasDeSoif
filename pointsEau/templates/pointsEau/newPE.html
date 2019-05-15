@@ -1,6 +1,13 @@
 {% extends 'base_generic.html' %}
+{% load static %}
 {% block title %}
 <title>Nouveau point</title>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/currentLocPE.js' %}"></script>
+<script>window.onload = function(){fixerLocalisationCourante({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});};</script>
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -32,6 +39,10 @@
             {{ form.desc.errors }}
             <label for="{{ form.desc.id_for_label }}">Description</label>
             <textarea type="text" class="form-control" name="{{ form.desc.name }}" id="{{ form.desc.id_for_label }}" placeholder="Une jolie fontaine où il est possible de s'abreuver sans modération !" rows="4"></textarea>
+        </div>
+        <div class="alert alert-info" role="alert">
+            Vous vous trouvez à côté du point d'eau ? Nous avons déjà mis les coordonnées pour vous 
+            <i class="em em-male-mechanic"></i>
         </div>
         <button type="submit" name="button" class="btn btn-primary">Créer</button>
     </form>
