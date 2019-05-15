@@ -1,0 +1,84 @@
+info:
+  description: ''
+  title: EnCasDeSoif API
+  version: ''
+openapi: 3.0.0
+paths:
+  /api/pointseau/:
+    get:
+      operationId: pointseau_list
+      tags:
+      - pointseau
+    post:
+      operationId: pointseau_create
+      tags:
+      - pointseau
+  /api/pointseau/{id}/:
+    delete:
+      operationId: pointseau_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this point eau.
+          title: ID
+          type: integer
+      tags:
+      - pointseau
+    get:
+      operationId: pointseau_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this point eau.
+          title: ID
+          type: integer
+      tags:
+      - pointseau
+    patch:
+      operationId: pointseau_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this point eau.
+          title: ID
+          type: integer
+      tags:
+      - pointseau
+    put:
+      operationId: pointseau_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this point eau.
+          title: ID
+          type: integer
+      tags:
+      - pointseau
+  /api/users/:
+    get:
+      operationId: users_list
+      tags:
+      - users
+  /api/users/{id}/:
+    get:
+      operationId: users_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this user.
+          title: ID
+          type: integer
+      tags:
+      - users
+servers:
+- url: http://127.0.0.1:8000/api/schema/

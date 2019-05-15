@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.views.generic.base import TemplateView
+from rest_framework.schemas import get_schema_view
 
+schema_view = get_schema_view(title='EnCasDeSoif API')
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -25,5 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
     path('pointsEau/', include('pointsEau.urls')),
-    path('api/', include('pointsEau.api.urls'), name="api-pointseau")
+    path('api/', include('pointsEau.api.urls'), name="api-pointseau"),
+    path('api/schema/', schema_view),
 ]
+
