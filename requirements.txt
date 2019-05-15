@@ -3,3 +3,4 @@ Django==2.2.1
 djangorestframework==3.9.3
 requests==2.21.0
 tblib==1.4.0
+selenium==3.141.0
