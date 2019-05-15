@@ -26,4 +26,3 @@ urlpatterns = [
     path('pointsEau/', include('pointsEau.urls')),
     path('api/', include('pointsEau.api.urls'), name="api-pointseau"),
 ]
-

@@ -20,6 +20,7 @@ class PointEauSerializer(serializers.ModelSerializer):
     desc = serializers.CharField(max_length=255)
     owner = serializers.ReadOnlyField(source='owner.username')
 
+
 class UserSerializer(serializers.ModelSerializer):
     pointseau = serializers.PrimaryKeyRelatedField(many=True, queryset=PointEau.objects.all())
 
