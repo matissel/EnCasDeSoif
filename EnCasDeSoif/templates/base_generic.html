@@ -25,12 +25,20 @@
                     <a class="nav-link" href="{% url 'index' %}">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item {% if active == 'newPE' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'newPE' %}">Ajouter un point d'eau</a>
+                <li class="nav-item {% if active == 'pointseau' %}active{% endif %} dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Points d'eau
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'newPE' %}">Ajouter</a>
+                        <a class="dropdown-item" href="{% url 'editPE' %}">Modifier</a>
+                    </div>
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Ajouter un point d'eau</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link disabled dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Points d'eau
+                    </a>
                 </li>
                 {% endif %}
                 <li class="nav-item {% if active == 'about' %}active{% endif %}">
