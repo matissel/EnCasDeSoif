@@ -16,7 +16,7 @@ function ajouterLocalisationActuelle(map)
         $(".mapboxgl-ctrl-geolocate").click();
     },3000);
 
-
+    return geolocalisation
 }
 
 function addMap(){
@@ -30,15 +30,19 @@ function addMap(){
         zoom: 12.3
         });
     
-    ajouterLocalisationActuelle(map)
+    geolocControl = ajouterLocalisationActuelle(map)
     
-    var marker = new mapboxgl.Marker({
-        draggable: true
-        })
-        .setLngLat([5.761094, 45.178086])
-        .addTo(map);
-         
-        function onDragEnd() {
+    marker = new mapboxgl.Marker({draggable:true})
+    
+    geolocControl.on('geolocate', function(e) {
+        var lon = e.coords.longitude;
+        var lat = e.coords.latitude
+        marker.setLngLat([lon,lat])
+    });
+
+    marker.addTo(map)
+
+    function onDragEnd() {
         var lngLat = marker.getLngLat();
         coordinates.style.display = 'block';
         coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
