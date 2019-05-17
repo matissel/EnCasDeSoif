@@ -1,0 +1,36 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %}
+<title>Nouveau point</title>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/currentLocPE.js' %}"></script>
+<script>window.onload = function(){fixerLocalisationCourante({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});};</script>
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {{ form.non_field_errors }}
+    <div class="row justify-content-center">
+        <h1> Editer point d'eau </h1>
+    </div>
+    <div class="row justify-content-center">
+        {% if forms|length == 0 %}
+        <p>Désolé, vous ne pouvez pas éditer de points d'eau car vous n'en n'avez renseigné aucun... <i class="em em-cry"></i>
+        <br>
+        Nous vous invitons dès maintenant à en ajouter en allant sur cette <a href="{% url 'newPE' %}">page</a> !
+        </p>
+    </div>
+        {% endif %}
+        {% for form in forms %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" name="button" class="btn btn-primary">Editer</button>
+            <br>
+        </form>
+        {% endfor %}
+</div>
+{% endblock %}

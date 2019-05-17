@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import PointEauForm
+from .forms import EditPointEauForm, PointEauForm
 from .models import PointEau
 from rest_framework import generics
 from pointsEau.models import PointEau
@@ -29,8 +29,25 @@ def addPE(request):
     else:
         form = PointEauForm()
 
-    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'newPE'})
+    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau'})
 
+def editPE(request):
+    user = request.user
+    ownerPeau = user.pointseau.all()
+    # if len(ownerPeau) == 0:
+    #     return redirect('/')
+    forms = list()
+    for pe in ownerPeau:
+        if request.method == 'POST':
+            form = EditPointEauForm(request.POST, instance=pe)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        else:
+            form = EditPointEauForm(instance=pe)
+
+        forms.append(form)
+    return render(request, 'pointsEau/editPE.html', {'forms': forms, 'active' : 'pointseau'})
 
 def init(request):
     try:
