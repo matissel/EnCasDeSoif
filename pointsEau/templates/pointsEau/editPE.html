@@ -16,21 +16,11 @@
     <div class="row justify-content-center">
         <h1> Editer point d'eau </h1>
     </div>
-    <div class="row justify-content-center">
-        {% if forms|length == 0 %}
-        <p>Désolé, vous ne pouvez pas éditer de points d'eau car vous n'en n'avez renseigné aucun... <i class="em em-cry"></i>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" name="button" class="btn btn-primary">Valider</button>
         <br>
-        Nous vous invitons dès maintenant à en ajouter en allant sur cette <a href="{% url 'newPE' %}">page</a> !
-        </p>
-    </div>
-        {% endif %}
-        {% for form in forms %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit" name="button" class="btn btn-primary">Editer</button>
-            <br>
-        </form>
-        {% endfor %}
+    </form>
 </div>
 {% endblock %}

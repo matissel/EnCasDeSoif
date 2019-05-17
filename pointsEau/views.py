@@ -31,23 +31,28 @@ def addPE(request):
 
     return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau'})
 
-def editPE(request):
+def viewPE(request):
     user = request.user
     ownerPeau = user.pointseau.all()
-    # if len(ownerPeau) == 0:
-    #     return redirect('/')
-    forms = list()
-    for pe in ownerPeau:
-        if request.method == 'POST':
-            form = EditPointEauForm(request.POST, instance=pe)
-            if form.is_valid():
-                form.save()
-                return redirect('/')
-        else:
-            form = EditPointEauForm(instance=pe)
+    return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active' : 'pointseau'})
 
-        forms.append(form)
-    return render(request, 'pointsEau/editPE.html', {'forms': forms, 'active' : 'pointseau'})
+def editPE(request, pk):
+    user = request.user
+    pe = PointEau.objects.get(pk=pk)
+    # Si on essaye d'éditer un point d'eau pas à lui
+    if pe.owner.id != request.user.id :
+        #TODO: gérer l'erreur autrement
+        raise("Erreur : this is not your point d'eau !!")
+        
+    if request.method == 'POST':
+        form = PointEauForm(request.POST, instance=pe)
+        if form.is_valid():
+            form.save()
+            return redirect('/pointsEau/lister')
+    else:
+        form = PointEauForm(instance=pe)
+
+    return render(request, 'pointsEau/editPE.html', {'form': form, 'active' : 'pointseau'})
 
 def init(request):
     try:
