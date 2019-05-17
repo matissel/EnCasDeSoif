@@ -1,4 +1,4 @@
-function addMap(){
+function addMap(lat,long){
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w';
     var map = new mapboxgl.Map({
@@ -36,9 +36,9 @@ function addMap(){
     
     function onDragEnd() {
         var lngLat = marker.getLngLat();
-        coordinates.style.display = 'block';
-        coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-        }
+        document.getElementById(lat.id).value = lngLat.lat.toFixed(8)
+        document.getElementById(long.id).value = lngLat.lng.toFixed(8)        
+    }
     
     marker.on('dragend', onDragEnd);
 
