@@ -23,7 +23,7 @@ def addPE(request):
 
             serializer = PointEauSerializer(data=point)
             if serializer.is_valid():
-                npe = serializer.save()
+                npe = serializer.save(owner=request.user)
                 return redirect('index')
 
     else:
