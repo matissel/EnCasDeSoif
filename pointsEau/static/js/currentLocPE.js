@@ -13,7 +13,6 @@ fixerLocalisationCourante = function(lat, long){
         var longitude = crd.longitude
        document.getElementById(lat.id).value = latitude.toFixed(8)
        //set longitude 
-       document.getElementById(long.id).value = longitude.toFixed(8) 
-    
+       document.getElementById(long.id).value = longitude.toFixed(8)    
    })
 }
