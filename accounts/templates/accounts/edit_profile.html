@@ -28,7 +28,7 @@
             <label for="{{ form.email.id_for_label }}">Email</label>
             <input type="text" class="form-control" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" value="{{ form.email.value }}">
         </div>
-        <!-- TODO Support password change {{ form.password }} -->
+        <a class="btn btn-primary" href="{% url 'change_password' %}">Changer son mot de passe</a>
         <button type="submit" name="button" class="btn btn-primary">Valider</button>
     </form>
 </div>
