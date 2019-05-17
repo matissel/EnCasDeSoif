@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from pointsEau.pointEau_api import afficherToutPoints
 from pointsEau.models import PointEau
-
 import json
+from django.contrib import messages as msg
 
 
 def login_redirect(request):
@@ -17,7 +17,7 @@ def about(request):
     return render(request, 'about.html', {'active': 'about'})
 
 
-def index(request):
+def index(request, messages=[]):
     existingPoints = PointEau.objects.all()
     # TODO : sécuriser la clé de l'API
     mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"

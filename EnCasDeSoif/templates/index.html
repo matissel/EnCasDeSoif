@@ -7,11 +7,36 @@
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 <link href="{% static 'css/mapStyle.css' %}" rel="stylesheet">
 <script src="{% static 'js/map.js' %}"></script>
-<script>window.onload = function(){addMap({{ allpe|safe }});};</script>
+<script src="{% static 'js/messages.js' %}"></script>
+<script>window.onload = function(){
+    addMap({{ allpe|safe }}); 
+    displayMessages();
+    };
+</script>
 {% endblock %}
 
 {% block content %}
+
     <div class="container">
+
+        {% if messages %}
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+                        <div class="alert alert-success" id="success-alert">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <strong>Parfait !</strong>
+                            {{ message }}
+                        </div>
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="alert alert-danger" id="danger-alert">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <strong>Parfait !</strong>
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        {% endif %}
+
         <h1>Bienvenue sur En Cas de Soif</h1>
         <div class="row">
             <!-- Ne pas toucher cette div. Elle sert à afficher la carte (JS)-->

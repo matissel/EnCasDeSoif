@@ -7,6 +7,8 @@ from .api.serializers import PointEauSerializer
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+import EnCasDeSoif.views as ecv
+from django.contrib import messages as msg
 
 
 def addPE(request):
@@ -24,6 +26,7 @@ def addPE(request):
             serializer = PointEauSerializer(data=point)
             if serializer.is_valid():
                 npe = serializer.save(owner=request.user)
+                msg.success(request, "Le point a été ajouté !")
                 return redirect('index')
 
     else:
