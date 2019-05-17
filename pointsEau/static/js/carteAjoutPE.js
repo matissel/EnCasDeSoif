@@ -19,7 +19,6 @@ function ajouterLocalisationActuelle(map)
 
 }
 
-
 function addMap(){
     
     mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w';
@@ -32,6 +31,21 @@ function addMap(){
         });
     
     ajouterLocalisationActuelle(map)
+    
+    var marker = new mapboxgl.Marker({
+        draggable: true
+        })
+        .setLngLat([5.761094, 45.178086])
+        .addTo(map);
+         
+        function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        coordinates.style.display = 'block';
+        coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+        }
+         
+        marker.on('dragend', onDragEnd);
+
 }
 
 
