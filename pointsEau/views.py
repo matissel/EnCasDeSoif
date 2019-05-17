@@ -31,19 +31,21 @@ def addPE(request):
 
     return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau'})
 
+
 def viewPE(request):
     user = request.user
     ownerPeau = user.pointseau.all()
-    return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active' : 'pointseau'})
+    return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active': 'pointseau'})
+
 
 def editPE(request, pk):
     user = request.user
     pe = PointEau.objects.get(pk=pk)
     # Si on essaye d'éditer un point d'eau pas à lui
-    if pe.owner.id != request.user.id :
-        #TODO: gérer l'erreur autrement
+    if pe.owner.id != request.user.id:
+        # TODO: gérer l'erreur autrement
         raise("Erreur : this is not your point d'eau !!")
-        
+
     if request.method == 'POST':
         form = PointEauForm(request.POST, instance=pe)
         if form.is_valid():
@@ -52,7 +54,8 @@ def editPE(request, pk):
     else:
         form = PointEauForm(instance=pe)
 
-    return render(request, 'pointsEau/editPE.html', {'form': form, 'active' : 'pointseau'})
+    return render(request, 'pointsEau/editPE.html', {'form': form, 'active': 'pointseau'})
+
 
 def init(request):
     try:
