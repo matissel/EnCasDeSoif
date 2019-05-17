@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pointsEau.models import PointEau
 from django.core import serializers
+from django.contrib import messages as msg
 
 
 def home(request):
@@ -34,6 +35,7 @@ def register(request):
         args = {'form': form,
                 'active': 'register'
                 }
+        msg.success(request, "Vous venez de créer un compte ! Bienvenue")
         return render(request, 'accounts/reg_form.html', args)
 
 
@@ -51,6 +53,7 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            msg.success(request, "Votre profil a bien été modifié")
             return redirect('/account/profile')
     else:
         form = EditProfileForm(instance=request.user)
@@ -81,6 +84,7 @@ def change_password(request):
 @login_required
 def view_logout(request):
     logout(request)
+    msg.info(request, "A bientôt !")
     return render(request, 'index.html', {
         'active': 'index'
     })

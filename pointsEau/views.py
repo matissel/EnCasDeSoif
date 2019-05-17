@@ -28,7 +28,6 @@ def addPE(request):
                 npe = serializer.save(owner=request.user)
                 msg.success(request, "Le point a été ajouté !")
                 return redirect('index')
-
     else:
         form = PointEauForm()
 
