@@ -1,7 +1,15 @@
-function ajouterLocalisationActuelle(map)
-{
+function addMap(){
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [5.761094, 45.178086],
+        zoom: 12.3
+        });
+
     // Add geolocate control to the map.
-    const geolocalisation = new mapboxgl.GeolocateControl({
+    const geolocControl = new mapboxgl.GeolocateControl({
         positionOptions: {
         enableHighAccuracy: true
         },
@@ -9,29 +17,9 @@ function ajouterLocalisationActuelle(map)
         });
     
     // Add the control to the map
-    map.addControl(geolocalisation)
+    map.addControl(geolocControl)
 
-    //Set a timeout. When 3sec elasped, click on the geolocalisation automatically 
-    setTimeout(function() {
-        $(".mapboxgl-ctrl-geolocate").click();
-    },3000);
-
-    return geolocalisation
-}
-
-function addMap(){
-    
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w';
-    //mapboxgl.accessToken = "{{ mapbox_access_token }}"
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [5.761094, 45.178086],
-        zoom: 12.3
-        });
-    
-    geolocControl = ajouterLocalisationActuelle(map)
-    
+   
     marker = new mapboxgl.Marker({draggable:true})
     
     geolocControl.on('geolocate', function(e) {
@@ -40,15 +28,19 @@ function addMap(){
         marker.setLngLat([lon,lat])
     });
 
-    marker.addTo(map)
-
+     //Set a timeout. When 3sec elasped, click on the geolocalisation automatically 
+     setTimeout(function() {
+        $(".mapboxgl-ctrl-geolocate").click();
+        marker.addTo(map);
+    },3000);
+    
     function onDragEnd() {
         var lngLat = marker.getLngLat();
         coordinates.style.display = 'block';
         coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
         }
-         
-        marker.on('dragend', onDragEnd);
+    
+    marker.on('dragend', onDragEnd);
 
 }
 
