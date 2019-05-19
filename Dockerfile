@@ -1,4 +1,4 @@
-FROM alpline:latest
+FROM alpine:3.9.4
 
 RUN mkdir -p /var/EnCasDeSoif
 WORKDIR /var/EnCasDeSoif
