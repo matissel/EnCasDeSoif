@@ -1,0 +1,7 @@
+.git
+.gitignore
+.travis.yml
+README.md
+Makefile
+Dockerfile
+/conceptions/*
