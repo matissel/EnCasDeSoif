@@ -8,14 +8,16 @@
 <link href="{% static 'css/mapStyle.css' %}" rel="stylesheet">
 <script src="{% static 'js/map.js' %}"></script>
 <script>window.onload = function(){
-    addMap({{ allpe|safe }}); 
+    points = {{ allpe|safe }}
+    token = "{{ mapboxToken|safe }}"
+    addMap(points,token); 
     displayMessages();
     };
 </script>
 {% endblock %}
 
 {% block content %}
-
+{{ mapboxToken }}
     <div class="container">
         <h1>Bienvenue sur En Cas de Soif</h1>
         <div class="row">

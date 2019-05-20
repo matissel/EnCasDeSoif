@@ -3,9 +3,10 @@ import requests
 import datetime
 import json
 import os
+from dotenv import load_dotenv
 
 def updateTokenVar(token, time):
-    os.environ['LAST_API_GENERATE_TIME'] = time 
+    os.environ['LAST_API_GENERATE_TIME'] = time.strftime("%Y-%m-%d %H:%M:%S")
     os.environ['LAST_TOKEN'] = token
 
 def generateNewToken():
@@ -19,28 +20,23 @@ def generateNewToken():
     url = 'https://api.mapbox.com/tokens/v2/matissou?access_token='+privateToken
     r = requests.post(url, data=json.dumps(payload), headers=headers)
     parsedResponse = r.json()
-    token = parsedResponse['json']
-
+    token = parsedResponse['token']
     updateTokenVar(token, now)
-
-    return parsedResponse['token']
+    return token
 
 
 def getTemporaryToken():
     # read the last date import  
-    lastImportTime = os.environ.get('LAST_API_GENERATE_TIME')
+    lastImportTime = os.getenv('LAST_API_GENERATE_TIME')
+    lastToken = os.getenv('LAST_TOKEN')
     now = datetime.datetime.now()
-    if(lastImportTime==''):
-        os.environ['LAST_API_GENERATE_TIME'] = now
+    if(lastImportTime=='' or lastToken==''):
         return generateNewToken()
     else:
+        lastImportTime = datetime.datetime.strptime(lastImportTime, "%Y-%m-%d %H:%M:%S")
         if( (lastImportTime + datetime.timedelta(minutes=30)) < now):
             # Generate a new token 
             return generateNewToken()
-        else:
-            # return last token used
-            if(os.environ.get('LAST_TOKEN') == ''):
-                return generateNewToken
-            else:
-                return os.environ.get('LAST_TOKEN')
+        else:         
+            return os.getenv('LAST_TOKEN')
 
