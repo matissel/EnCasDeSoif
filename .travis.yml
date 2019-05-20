@@ -11,8 +11,4 @@ install:
 
 script: 
   - make build
-
-after_success:
-  - docker build . -t loicrosso/en-cas-de-soif:latest
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push loicrosso/en-cas-de-soif:latest
+  - bash docker-push.sh
