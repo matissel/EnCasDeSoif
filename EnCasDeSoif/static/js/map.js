@@ -18,7 +18,7 @@ function ajouterLocalisationActuelle(map)
 
 }
 
-function addMap(allpe){
+function addMap(allpe, token=''){
     var geojson =allpe;
     
     mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w';
