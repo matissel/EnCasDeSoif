@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 import EnCasDeSoif.views as ecv
 from django.contrib import messages as msg
-
+from pointsEau.api.tokenHandler import getTemporaryToken
 
 def addPE(request):
     if request.method == 'POST':
@@ -31,7 +31,8 @@ def addPE(request):
     else:
         form = PointEauForm()
 
-    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau'})
+    mapboxToken = getTemporaryToken
+    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau', 'mapboxToken':mapboxToken})
 
 
 def viewPE(request):
