@@ -13,14 +13,6 @@ python manage.py runserver
 
 > Go to localhost:8000
 
-### Documentation 
-Voir le dossier docs/
-
-```bash
-docsify serve docs
-```
-
-> Go to localhost:3000
 
 [//]: <> (Pour générer le tableau à partir du CSV : https://www.tablesgenerator.com/markdown_tables)
 #### API
@@ -28,9 +20,11 @@ Il est possible d'utiliser EnCasDeSoif en utilisant l'API REST suivante. Cette A
 
 |      <path\>    | GET | POST | PUT | DELETE |
 |:---------------:|:---:|:----:|:---:|:------:|
-|  account/login  |  /  |   /  |  /  |    /   |
-|  pointsEau/all  |  /  |   /  |  /  |    /   |
+|  nouveau/  |  /  |   /nouveau  |  /  |    /   |
+|  lister/ |  /lister  |   /  |  /  |    /   |
+|  editer/<int:pk>  |  /  |   /  |  /editer/<int:pk>  |    /   |
 | pointsEau/<$id> |  /  |   /  |  /  |    /   |
+| init/ |  /  |   /init  |  /  |    /   |
 
 ### Contribution 
 1. Fork le projet et faire une PR
