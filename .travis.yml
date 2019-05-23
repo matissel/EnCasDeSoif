@@ -19,5 +19,5 @@ script:
   - coverage run manage.py test
   - bash docker-push.sh
 
-after_success:
-- bash < (curl -s https://codecov.io/bash)
+after-success:
+  - codecov
