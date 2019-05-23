@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv()
 MAPBOX_PRIVATE_KEY = os.getenv('MAPBOX_PRIVATE_KEY')
-
+MAPBOX_LOGIN = os.getenv('MAPBOX_LOGIN')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 

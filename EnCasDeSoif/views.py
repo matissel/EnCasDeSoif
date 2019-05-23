@@ -9,6 +9,7 @@ import json
 from django.contrib import messages as msg
 from pointsEau.api.tokenHandler import getTemporaryToken
 
+
 def login_redirect(request):
     return redirect('/account/login')
 
@@ -45,10 +46,10 @@ def index(request, messages=[]):
         geojson['features'].append(nouveauPoint)
 
     args = {
-        'mapboxToken' : mapboxToken,
+        'mapboxToken': mapboxToken,
         'allpe': geojson,
         'lurl': request.build_absolute_uri,
         'active': 'index'
     }
-    
+
     return render(request, 'index.html', args)
