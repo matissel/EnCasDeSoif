@@ -16,7 +16,7 @@ def generateNewToken():
     login = settings.MAPBOX_LOGIN
     headers = {'content-type': 'application/json'}
     now = datetime.datetime.now()
-    delayedNow = now + datetime.timedelta(minutes=30)
+    delayedNow = now + datetime.timedelta(minutes=15)
     formatedDelayed = delayedNow.strftime("%Y-%m-%d") + "T" + delayedNow.strftime("%H:%M:%S")
     payload = {"expires": formatedDelayed,
                "scopes": ["styles:tiles", "styles:read", "fonts:read", "datasets:read", "vision:read"]}
@@ -37,7 +37,7 @@ def getTemporaryToken():
         return generateNewToken()
     else:
         lastImportTime = datetime.datetime.strptime(lastImportTime, "%Y-%m-%d %H:%M:%S")
-        if((lastImportTime + datetime.timedelta(minutes=30)) < now):
+        if((lastImportTime + datetime.timedelta(minutes=15)) < now):
             # Generate a new token
             return generateNewToken()
         else:
