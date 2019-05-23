@@ -2,6 +2,9 @@
 
 {% block title %}<title>Login - En cas de soif</title>{% endblock %}
 {% block styles %} 
+{% block scripts %} 
+<script>window.onload = function(){displayMessages();};</script>
+{% endblock %}
 {% load static %}
 <link href="{% static 'css/login.css' %}" rel="stylesheet">
 {% endblock %}

@@ -1,0 +1,10 @@
+.git
+.gitignore
+.travis.yml
+db.sqlite3
+README.md
+Makefile
+Dockerfile
+/conceptions
+**/migrations/[0-9]*_initial.py
+**/__pycache__

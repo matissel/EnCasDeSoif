@@ -1,0 +1,50 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %}
+<title>Nouveau point</title>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/currentLocPE.js' %}"></script>
+<script>window.onload = function(){fixerLocalisationCourante({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});};</script>
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {{ form.non_field_errors }}
+    <div class="row justify-content-center">
+        <h1> Editer point d'eau </h1>
+    </div>
+    <div class="row justify-content-center">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-row">
+            <div class="form-group col-xs-6 col-md">
+                {{ form.nom.errors }}
+                <label for="{{ form.nom.id_for_label }}">Nom</label>
+                <input type="text" name="{{ form.nom.name }}" class="form-control" id="{{ form.nom.id_for_label }}" value="{{ form.nom.value }}">
+            </div>
+            <div class="form-group col-6 col-md">
+                {{ form.lat.errors }}
+                <label for="{{ form.lat.id_for_label }}">Latitude</label>
+                <input type="text" class="form-control" name="{{ form.lat.name }}" id="{{ form.lat.id_for_label }}" value="{{ form.lat.value }}">
+            </div> 
+            <div class="form-group col-6 col-md">
+                {{ form.long.errors }}
+                <label for="{{ form.long.id_for_label }}">Longitude</label>
+                <input type="text" class="form-control" name="{{ form.long.name }}" id="{{ form.long.id_for_label }}" value="{{ form.long.value }}">
+            </div> 
+            <div class="form-group col-12">
+                {{ form.desc.errors }}
+                <label for="{{ form.long.desc }}">Description</label>
+                <textarea type="text" class="form-control" name="{{ form.desc.name }}" id="{{ form.desc.id_for_label }}">{{ form.desc.value }}</textarea>
+            </div> 
+        </div>      
+        <button type="submit" name="button" class="btn btn-primary">Valider</button>
+        <br>
+    </form>
+    </div>
+</div>
+{% endblock %}

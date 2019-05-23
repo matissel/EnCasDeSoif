@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import PointEauForm
+from .forms import EditPointEauForm, PointEauForm
 from .models import PointEau
 from rest_framework import generics
 from pointsEau.models import PointEau
@@ -7,6 +7,9 @@ from .api.serializers import PointEauSerializer
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+import EnCasDeSoif.views as ecv
+from django.contrib import messages as msg
+from pointsEau.api.tokenHandler import getTemporaryToken
 
 
 def addPE(request):
@@ -23,13 +26,48 @@ def addPE(request):
 
             serializer = PointEauSerializer(data=point)
             if serializer.is_valid():
-                npe = serializer.save()
+                npe = serializer.save(owner=request.user)
+                msg.success(request, "Le point a été ajouté !")
                 return redirect('index')
-
     else:
         form = PointEauForm()
 
-    return render(request, 'pointsEau/newPE.html', {'form': form})
+    mapboxToken = getTemporaryToken
+    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau', 'mapboxToken': mapboxToken})
+
+
+def viewPE(request):
+    user = request.user
+    ownerPeau = user.pointseau.all()
+    return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active': 'pointseau'})
+
+def delPE(request, pk):
+    pe = PointEau.objects.get(pk=pk)
+    # Si on essaye d'éditer un point d'eau pas à lui
+    if pe.owner.id != request.user.id:
+        # TODO: gérer l'erreur autrement
+        raise("Erreur : this is not your point d'eau !!")
+    pe.delete()
+    ownerPeau = request.user.pointseau.all()
+    return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active': 'pointseau'})
+
+def editPE(request, pk):
+    user = request.user
+    pe = PointEau.objects.get(pk=pk)
+    # Si on essaye d'éditer un point d'eau pas à lui
+    if pe.owner.id != request.user.id:
+        # TODO: gérer l'erreur autrement
+        raise("Erreur : this is not your point d'eau !!")
+
+    if request.method == 'POST':
+        form = PointEauForm(request.POST, instance=pe)
+        if form.is_valid():
+            form.save()
+            return redirect('/pointsEau/lister')
+    else:
+        form = PointEauForm(instance=pe)
+
+    return render(request, 'pointsEau/editPE.html', {'form': form, 'active': 'pointseau'})
 
 
 def init(request):

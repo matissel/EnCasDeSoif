@@ -7,7 +7,13 @@
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 <link href="{% static 'css/mapStyle.css' %}" rel="stylesheet">
 <script src="{% static 'js/map.js' %}"></script>
-<script>window.onload = function(){addMap({{ allpe|safe }});};</script>
+<script>window.onload = function(){
+    points = {{ allpe|safe }}
+    token = "{{ mapboxToken|safe }}"
+    addMap(points,token); 
+    displayMessages();
+    };
+</script>
 {% endblock %}
 
 {% block content %}

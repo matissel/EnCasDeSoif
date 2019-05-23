@@ -5,19 +5,23 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from pointsEau.pointEau_api import afficherToutPoints
 from pointsEau.models import PointEau
-
 import json
+from django.contrib import messages as msg
+from pointsEau.api.tokenHandler import getTemporaryToken
 
 
 def login_redirect(request):
     return redirect('/account/login')
 
 
-def index(request):
+def about(request):
+    return render(request, 'about.html', {'active': 'about'})
+
+
+def index(request, messages=[]):
     existingPoints = PointEau.objects.all()
-    # TODO : sécuriser la clé de l'API
-    mapbox_access_token = "pk.eyJ1IjoibWF0aXNzb3UiLCJhIjoiY2plOGFtdWhvMDZuNzMzcHIxZTNuMXo0dSJ9.aPI9ecTNZg0-ExUGEPX14w"
     toutLesPoints = json.loads(afficherToutPoints(request).content)
+    mapboxToken = getTemporaryToken
 
     geojson = {
         'type': 'FeatureCollection',
@@ -42,8 +46,10 @@ def index(request):
         geojson['features'].append(nouveauPoint)
 
     args = {
-        'mapbox_access_token': mapbox_access_token,
+        'mapboxToken': mapboxToken,
         'allpe': geojson,
-        'lurl': request.build_absolute_uri
+        'lurl': request.build_absolute_uri,
+        'active': 'index'
     }
+
     return render(request, 'index.html', args)

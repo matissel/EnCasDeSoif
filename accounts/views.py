@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pointsEau.models import PointEau
 from django.core import serializers
+from django.contrib import messages as msg
 
 
 def home(request):
@@ -31,14 +32,18 @@ def register(request):
     else:
         form = RegistrationForm()
 
-        args = {'form': form}
+        args = {'form': form,
+                'active': 'register'
+                }
+        msg.success(request, "Vous venez de créer un compte ! Bienvenue")
         return render(request, 'accounts/reg_form.html', args)
 
 
 @login_required
 def view_profile(request):
     # Récupère l'utilisateur et le renvoie à la vue
-    args = {'user': request.user}
+    args = {'user': request.user,
+            'active': 'profile'}
     return render(request, 'accounts/profile.html', args)
 
 
@@ -48,10 +53,12 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            msg.success(request, "Votre profil a bien été modifié")
             return redirect('/account/profile')
     else:
         form = EditProfileForm(instance=request.user)
-        args = {'form': form}
+        args = {'form': form,
+                'active': 'profile'}
     return render(request, 'accounts/edit_profile.html', args)
 
 
@@ -69,11 +76,15 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'accounts/change_password.html', {
-        'form': form
+        'form': form,
+        'active': 'profile'
     })
 
 
 @login_required
 def view_logout(request):
     logout(request)
-    return render(request, 'index.html')
+    msg.info(request, "A bientôt !")
+    return render(request, 'index.html', {
+        'active': 'index'
+    })

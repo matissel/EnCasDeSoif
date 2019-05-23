@@ -1,0 +1,55 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %}
+<title>Nouveau point</title>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/currentLocPE.js' %}"></script>
+<script>window.onload = function(){fixerLocalisationCourante({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});};</script>
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {{ form.non_field_errors }}
+    <div class="row justify-content-center">
+        <h1> Vos points d'eau </h1>
+    </div>
+    {% if pointseau|length == 0 %}
+    <div class="row justify-content-center">    
+        <p>Désolé, vous ne pouvez pas éditer de points d'eau car vous n'en n'avez renseigné aucun... <i class="em em-cry"></i>
+        <br>
+        Nous vous invitons dès maintenant à en ajouter en allant sur cette <a href="{% url 'newPE' %}">page</a> !
+        </p>
+    </div>
+    {% endif %}
+    {% for pe in pointseau %}
+    <div class="row justify-content-center">
+    <form>
+    <div class="form-row">
+            <div class="form-group col-xs-6 col-md">
+                <label for="nom">Nom</label>
+                <input type="text" readonly name="nom" class="form-control" id="nom" value="{{ pe.nom }} ">
+            </div>
+            <div class="form-group col-6 col-md">
+                <label for="lat">Latitude</label>
+                <input type="text" readonly class="form-control" name="lat" id="lat" value="{{ pe.lat }}">
+            </div> 
+            <div class="form-group col-6 col-md">
+                    <label for="long">Longitude</label>
+                    <input type="text" readonly class="form-control" name="long" id="long" value="{{ pe.long }}">
+                </div>  
+            <div class="form-group col-12">
+                <label for="desc">Description</label>
+                <textarea type="text" readonly class="form-control" name="desc" id="desc">{{ pe.desc }}</textarea>
+            </div> 
+    </div>
+    <a href="{% url 'editPE' pk=pe.id %}" class="btn btn-primary">Editer</a> 
+    <a href="{% url 'delPE' pk=pe.id %}" class="btn btn-danger">Supprimer</a>
+    </form>
+    </div>  
+    <br>
+    {% endfor %}
+</div>
+{% endblock %}

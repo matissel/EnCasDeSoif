@@ -8,7 +8,7 @@ class PointEau(models.Model):
     long = models.DecimalField(max_digits=10, decimal_places=8)
     lat = models.DecimalField(max_digits=10, decimal_places=8)
     desc = models.CharField(blank=False, default='Description', max_length=255)
-    owner = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name='pointseau', default=None, on_delete=models.CASCADE)
 
     def __str__(self):
         return '''--Point eau --
