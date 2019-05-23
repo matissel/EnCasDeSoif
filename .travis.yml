@@ -6,6 +6,10 @@ python:
 services:
   - docker
 
+branches:
+  only:
+  - master
+  
 install:
   - pip install -r requirements.txt
 
