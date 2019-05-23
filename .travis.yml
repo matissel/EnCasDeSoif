@@ -16,6 +16,7 @@ install:
 
 script: 
   - make build
+  - coverage run manage.py test
   - bash docker-push.sh
 
 after-success:
