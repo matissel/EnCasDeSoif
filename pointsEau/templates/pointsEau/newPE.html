@@ -10,7 +10,10 @@
 <script src="{% static 'js/carteAjoutPE.js' %}"></script>
 <link href="{% static 'css/mapStyle.css' %}" rel="stylesheet">
 <script src="{% static 'js/currentLocPE.js' %}"></script>
-<script>window.onload = function(){fixerLocalisationCourante({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});addMap({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});};</script>
+<script>window.onload = function(){
+    fixerLocalisationCourante({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});
+    token = "{{ mapboxToken|safe }}"
+    addMap({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }}, token);};</script>
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 {% endblock %}
 

@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 import EnCasDeSoif.views as ecv
 from django.contrib import messages as msg
+from pointsEau.api.tokenHandler import getTemporaryToken
 
 
 def addPE(request):
@@ -31,7 +32,8 @@ def addPE(request):
     else:
         form = PointEauForm()
 
-    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau'})
+    mapboxToken = getTemporaryToken
+    return render(request, 'pointsEau/newPE.html', {'form': form, 'active': 'pointseau', 'mapboxToken': mapboxToken})
 
 
 def viewPE(request):
@@ -73,7 +75,7 @@ def init(request):
         sampleUser = User.objects.get(username='sampleUser')
     except BaseException:
         sampleUser = User.objects.create_user(username='sampleUser', email='sample.user@sampleMail.com', password='samplePassword')
-        
+
     PointEau.objects.create(nom="Point eau 1", lat=43.09, long=34.00, desc="Point eau 1", owner=sampleUser)
     PointEau.objects.create(nom="Point eau 2", lat=12.09, long=54.099, desc="Point eau 2", owner=sampleUser)
     PointEau.objects.create(nom="Point eau 3", lat=34.00, long=22.009, desc="Point eau 3", owner=sampleUser)

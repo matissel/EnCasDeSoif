@@ -2,6 +2,16 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from dotenv import load_dotenv
+
+
+def verifyEnvIsSet():
+    load_dotenv()
+    MAPBOX_PRIVATE_KEY = os.getenv('MAPBOX_PRIVATE_KEY')
+    MAPBOX_LOGIN = os.getenv('MAPBOX_LOGIN')
+    if MAPBOX_PRIVATE_KEY == '' or MAPBOX_LOGIN == '':
+        print('Set your mapbox api key and login in .env file')
+        sys.exit()
 
 
 def main():
@@ -18,4 +28,5 @@ def main():
 
 
 if __name__ == '__main__':
+    verifyEnvIsSet()
     main()
