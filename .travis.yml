@@ -17,7 +17,11 @@ install:
 script: 
   - make build
   - coverage run manage.py test
-  - bash docker-push.sh
-
-after-success:
   - codecov
+  
+deploy:
+  provider: script
+  script: docker-push.sh
+  on:
+    branch: master
+  
