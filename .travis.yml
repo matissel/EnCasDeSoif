@@ -12,7 +12,12 @@ branches:
   
 install:
   - pip install -r requirements.txt
+  - pip install codecov
 
 script: 
   - make build
+  - coverage run manage.py test
   - bash docker-push.sh
+
+after-success:
+  - codecov

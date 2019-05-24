@@ -9,7 +9,7 @@ OK_STRING    = "[OK]"
 ERROR_STRING = "[ERROR]"
 WARN_STRING  = "[WARNING]"
 
-build: format test
+build: format
 
 test: migrate
 	@echo "--> Running tests"
