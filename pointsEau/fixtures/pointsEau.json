@@ -64,5 +64,71 @@
         "desc": "Point eau 6",
         "owner": 3
     }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 7,
+    "fields": {
+        "nom": "Les taillés université",
+        "lat": "45.192124",
+        "long": "5.759346",
+        "desc": "A côté du tramway",
+        "owner": 3
+    }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 8,
+    "fields": {
+        "nom": "Batiment H",
+        "lat": "45.193110",
+        "long": "5.767058",
+        "desc": "Rez de chaussé a gauche de l'escalier",
+        "owner": 3
+    }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 9,
+    "fields": {
+        "nom": "Maison de l'inp",
+        "lat": "45.194500",
+        "long": "5.765519",
+        "desc": "Au fond en rentrant",
+        "owner": 3
+    }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 10,
+    "fields": {
+        "nom": "Parc Arboretum",
+        "lat": "45.194215",
+        "long": "5.7789519",
+        "desc": "Derriere le grand saping",
+        "owner": 3
+    }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 11,
+    "fields": {
+        "nom": "BU Joseph Fourrier",
+        "lat": "45.192305",
+        "long": "5.770635",
+        "desc": "Demandez à la secrétaire pour qu'elle ouvre",
+        "owner": 3
+    }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 12,
+    "fields": {
+        "nom": "Piscine Universitaire",
+        "lat": "45.195567",
+        "long": "5.767123",
+        "desc": "A côté de l'accueil",
+        "owner": 3
+    }
 }
 ]
