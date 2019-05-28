@@ -23,6 +23,9 @@ $ docker run --rm --name EnCasDeSoif -p 8000:8000 loicrosso/en-cas-de-soif
 ```bash
 $ git clone https://github.com/Matissou/EnCasDeSoif
 $ cd EnCasDeSoif
+# Modifiez le fichier .env avec votre login et clé d'api Mapbox 
+# Sourcez le fichier .env
+$ source .env
 #installer les dépendances
 $ pip install -r requirements.txt
 # préparer la base de données
