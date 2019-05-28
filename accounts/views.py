@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from accounts.forms import RegistrationForm, EditProfileForm
+from accounts.forms import EditProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pointsEau.models import PointEau
+from django.contrib.auth import login, authenticate
 from django.core import serializers
 from django.contrib import messages as msg
 
@@ -22,21 +23,21 @@ def home(request):
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             # Sauvegarde dans la base
             form.save()
-            return redirect('/')
-        else:
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            msg.success(request, "Vous venez de créer un compte ! Bienvenue")
             return redirect('/')
     else:
-        form = RegistrationForm()
+        form = UserCreationForm()
 
-        args = {'form': form,
-                'active': 'register'
-                }
-        msg.success(request, "Vous venez de créer un compte ! Bienvenue")
-        return render(request, 'accounts/reg_form.html', args)
+    args = {'form': form, 'active': 'register'}
+    return render(request, 'accounts/reg_form.html', args)
 
 
 @login_required
