@@ -5,14 +5,24 @@ python:
 
 services:
   - docker
-
+  - xvfb
+addons:
+  chrome: stable
+  
 branches:
   only:
   - master
-  
+
+before_install:
+  - wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
+  - sudo unzip chromedriver_linux64.zip -d /usr/bin/
+  - sudo chmod 777 /usr/bin/chromedriver
+  - export CHROME_BIN=chromium-browser
+
 install:
   - pip install -r requirements.txt
   - pip install codecov
+
 
 script: 
   - make build
