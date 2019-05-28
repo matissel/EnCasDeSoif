@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'accounts',
     'pointsEau',
     'rest_framework',
-    'EnCasDeSoif'
+    'EnCasDeSoif', 
+    'ban'
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'ban.middleware.BanManagement',
 ]
 
 ROOT_URLCONF = 'EnCasDeSoif.urls'
