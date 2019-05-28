@@ -25,7 +25,25 @@ class MySeleniumTests(StaticLiveServerTestCase):
         password_input.send_keys(password)
         self.selenium.find_element_by_xpath('//button[@type="submit" and text()="Se connecter"]').click()
 
-    def test_login_failed(self):
+    def test_login_wrong_user(self):
+        self.login('wrongUser', self.myGoodTestPassword)
+        #Test we stay on the same page
+        page_url = self.selenium.current_url
+        self.assertEqual(page_url, '%s%s' % (self.live_server_url, '/account/login/'), "Wrong login should stay on the same login page")
+        #Test that error messages are displayed
+        error_message = self.selenium.find_elements_by_xpath('//ul[@class="errorlist nonfield"]')
+        self.assertGreater(len(error_message), 0, "Wrong login should return at least 1 error message")
+
+    def test_login_wrong_password(self):
+        self.login(self.user.username, 'wrongPassword')
+        #Test we stay on the same page
+        page_url = self.selenium.current_url
+        self.assertEqual(page_url, '%s%s' % (self.live_server_url, '/account/login/'), "Wrong login should stay on the same login page")
+        #Test that error messages are displayed
+        error_message = self.selenium.find_elements_by_xpath('//ul[@class="errorlist nonfield"]')
+        self.assertGreater(len(error_message), 0, "Wrong login should return at least 1 error message")
+
+    def test_login_wrong_user_password(self):
         self.login('wrongUser', 'wrongPassword')
         #Test we stay on the same page
         page_url = self.selenium.current_url
@@ -36,7 +54,6 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
     def test_login_success(self):
         self.login(self.user.username, self.myGoodTestPassword)
-        
         #Test we stay on the same page
         page_url = self.selenium.current_url
         self.assertEqual(page_url, '%s%s' % (self.live_server_url, '/'), "Good login should redirect on index page")
