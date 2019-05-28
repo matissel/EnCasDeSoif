@@ -8,9 +8,11 @@ from pointsEau.models import PointEau
 import json
 from django.contrib import messages as msg
 from pointsEau.api.tokenHandler import getTemporaryToken
+from django.contrib.auth import authenticate, login, logout
 
 
 def login_redirect(request):
+    msg.info(request, "Vous êtes maintenant connecté !")
     return redirect('/account/login')
 
 
