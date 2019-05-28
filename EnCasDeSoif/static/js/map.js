@@ -61,7 +61,7 @@ function addMap(allpe, token){
         "circle-color": [
         "step",
         ["get", "point_count"],
-        "#63f9b8",
+        "#f962ae",
         100,
         "#f1f075",
         750,
@@ -97,7 +97,7 @@ function addMap(allpe, token){
         source: "pointsEau",
         filter: ["!", ["has", "point_count"]],
         paint: {
-        "circle-color": "#63f9b8",
+        "circle-color": "#f962ae",
         "circle-radius": 8,
         "circle-stroke-width": 1,
         "circle-stroke-color": "#fff"
