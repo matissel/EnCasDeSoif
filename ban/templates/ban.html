@@ -1,22 +1,29 @@
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' type='image/x-icon' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">  
     <meta charset="UTF-8">
     <title>Banned!</title>
 </head>
 <body>
-<style>
-    .box{
-        margin-top: 200px;
-        color:red;
-    }
-</style>
-
-<center>
-<h1 class="box">You are permanently banned by admin</h1>
-    <hr>
-<b><mark>Rule violation</mark></b>
-</center>
+    <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                                <h1 class="display-4">Vous avez été banni</h1>
+                                <p class="lead">Vous avez été banni pour violation des conditions utilisateurs</p>
+                        </div>
+                        <div class="col-6 col-md-4"><img src="{% static 'img/banned.png' %}" class="img-responsive center-block" alt="banned logo"></div>
+                </div>
+            </div>
+    </div>
+    <div class="row">
+            <div class="col-md-3 offset-md-3"> <a class="btn btn-primary btn-lg" href="{% url 'index' %}" role="button">Retour accueil</a></div>
+            <div class="col-md-3 offset-md-3"></div>
+    </div>
+   
 
 </body>
 </html>
