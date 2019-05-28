@@ -9,17 +9,7 @@ from pointsEau.models import PointEau
 from django.contrib.auth import login, authenticate
 from django.core import serializers
 from django.contrib import messages as msg
-
-
-def home(request):
-    # L'ajout du dossier accounts/ permet d'eviter la confusion avec
-    # le nom de la page, qui pourrait exister deux fois. Django prendrai le premier
-    # qu'il voit
-    numbers = [1, 2, 3, 4, 5]
-    name = "Matisse"
-    args = {'name': name, 'numbers': numbers}
-    return render(request, 'home.html', args)
-
+from EnCasDeSoif.views import index
 
 def register(request):
     if request.method == 'POST':
@@ -85,7 +75,5 @@ def change_password(request):
 @login_required
 def view_logout(request):
     logout(request)
-    msg.info(request, "A bientôt !")
-    return render(request, 'index.html', {
-        'active': 'index'
-    })
+    msg.info(request, "A bientôt l'ami !")
+    return index(request)
