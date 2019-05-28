@@ -16,15 +16,17 @@ class MySeleniumTests(StaticLiveServerTestCase):
     def tearDownClass(self):
         self.selenium.quit()
         super().tearDownClass()
-
-    def test_login_failed(self):
+    
+    def login(self, username, password):
         self.selenium.get('%s%s' % (self.live_server_url, '/account/login/'))
         username_input = self.selenium.find_element_by_name("username")
-        username_input.send_keys('myuser')
+        username_input.send_keys(username)
         password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('secret')
+        password_input.send_keys(password)
         self.selenium.find_element_by_xpath('//button[@type="submit" and text()="Se connecter"]').click()
 
+    def test_login_failed(self):
+        self.login('wrongUser', 'wrongPassword')
         #Test we stay on the same page
         page_url = self.selenium.current_url
         self.assertEqual(page_url, '%s%s' % (self.live_server_url, '/account/login/'), "Wrong login should stay on the same login page")
@@ -33,12 +35,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.assertGreater(len(error_message), 0, "Wrong login should return at least 1 error message")
 
     def test_login_success(self):
-        self.selenium.get('%s%s' % (self.live_server_url, '/account/login/'))
-        username_input = self.selenium.find_element_by_name("username")
-        username_input.send_keys(self.user.username)
-        password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys(self.myGoodTestPassword)
-        self.selenium.find_element_by_xpath('//button[@type="submit" and text()="Se connecter"]').click()
+        self.login(self.user.username, self.myGoodTestPassword)
         
         #Test we stay on the same page
         page_url = self.selenium.current_url
