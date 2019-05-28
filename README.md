@@ -11,7 +11,10 @@ Que ce soit pour boire, mettre de l'eau sur un bobo ou même se laver, cette app
 - Docker
 
 ```bash
-$ docker run --rm --name EnCasDeSoif -p 8000:8000 loicrosso/en-cas-de-soif
+$ docker run --rm --name EnCasDeSoif -p 8000:8000 \
+                -e MAPBOX_LOGIN="MyMapboxUsername" \
+                -e MAPBOX_PRIVATE_KEY="sk.MyMapBoxSecretKey" \
+                loicrosso/en-cas-de-soif
 ```
 > Go to localhost:8000
 
