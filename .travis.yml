@@ -5,7 +5,9 @@ python:
 
 services:
   - docker
-
+addons:
+  chrome: stable
+  
 branches:
   only:
   - master
