@@ -1,4 +1,5 @@
 dist: xenial
+sudo: required
 language: python
 python:
   - "3.7"
@@ -15,7 +16,7 @@ branches:
 
 before_install:
   - wget https://chromedriver.storage.googleapis.com/73.0.3683.68/chromedriver_linux64.zip
-  - sudo unzip chromedriver_linux64.zip -d /usr/bin/
+  - unzip chromedriver_linux64.zip -d /usr/bin/
   - export CHROME_BIN=chromium-browser
 
 install:
