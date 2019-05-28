@@ -5,6 +5,7 @@ python:
 
 services:
   - docker
+  - xvfb
 addons:
   chrome: stable
   
