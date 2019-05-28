@@ -15,7 +15,7 @@ def verifyEnvIsSet():
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'EnCasDeSoif.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'EnCasDeSoif.settings.prod')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

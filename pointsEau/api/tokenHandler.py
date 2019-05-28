@@ -1,4 +1,4 @@
-from EnCasDeSoif import settings
+from django.conf import settings
 import requests
 import datetime
 import json
