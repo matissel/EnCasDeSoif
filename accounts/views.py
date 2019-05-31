@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
-from accounts.forms import EditProfileForm
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, PasswordChangeForm
+from accounts.forms import EditProfileForm, RegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
@@ -14,7 +14,7 @@ from EnCasDeSoif.views import index
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             # Sauvegarde dans la base
             form.save()
@@ -25,7 +25,7 @@ def register(request):
             msg.success(request, "Vous venez de créer un compte ! Bienvenue")
             return redirect('/')
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
 
     args = {'form': form, 'active': 'register'}
     return render(request, 'accounts/reg_form.html', args)
