@@ -40,7 +40,7 @@ def login_user(request):
             return redirect('/')
     else:
         form = AuthenticationForm()
-    return render(request, 'accounts/login.html', {'form':form})
+    return render(request, 'accounts/login.html', {'form':form, 'active': 'login'})
 
 @login_required
 def view_profile(request):

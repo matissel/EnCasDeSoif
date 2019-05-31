@@ -11,11 +11,26 @@
 
 {% block content %}
 <div class="container text-center">
-<h1>Bienvenue </h1>
-    <form class="form-signin" method="post">
+<h1>Bienvenue </h1> 
+<form class="form-signin" method="post">
         <h3 class="h3 mb-3 font-weight-normal">Connectez-vous</h3>
         {% csrf_token %}
-        {{ form.as_p }}
+        
+        <label for="{{ form.username.id_for_label }}">Nom d'utilisateur </label>
+        <input type="text" required class="form-control" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}">
+        {% if form.username.errors %}
+        <div class="alert alert-danger" role="alert"> {{ form.username.errors }}</div>
+        {% endif %}
+        <label for="{{ form.password.id_for_label }}">Mot de passe </label>
+        <input type="password" required class="form-control" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}">
+        {% if form.password.errors %}
+        <div class="alert alert-danger" role="alert">{{ form.password.errors }}</div>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert"> {{ form.non_field_errors }}</div>
+        {% endif %}
+
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="button">Se connecter</button>
     </form>  
 </div>
