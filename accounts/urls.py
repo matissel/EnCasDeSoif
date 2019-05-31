@@ -5,7 +5,7 @@ from . import views
 import EnCasDeSoif.views as ec
 urlpatterns = [
     path('', ec.index),
-    path('login/', LoginView.as_view(template_name='accounts/login.html'), name="login"),
+    path('login/', views.login_user, name="login"),
     path('logout/', views.view_logout, name='logout'),
     path('register/', views.register, name="register"),
     path('profile/', views.view_profile, name='view_profile'),

@@ -10,6 +10,8 @@ from django.http import HttpResponse
 import EnCasDeSoif.views as ecv
 from django.contrib import messages as msg
 from pointsEau.api.tokenHandler import getTemporaryToken
+from django.http import HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 
 
 def addPE(request):
@@ -41,6 +43,7 @@ def viewPE(request):
     ownerPeau = user.pointseau.all()
     return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active': 'pointseau'})
 
+
 def delPE(request, pk):
     pe = PointEau.objects.get(pk=pk)
     # Si on essaye d'éditer un point d'eau pas à lui
@@ -51,13 +54,13 @@ def delPE(request, pk):
     ownerPeau = request.user.pointseau.all()
     return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active': 'pointseau'})
 
+
 def editPE(request, pk):
     user = request.user
     pe = PointEau.objects.get(pk=pk)
     # Si on essaye d'éditer un point d'eau pas à lui
     if pe.owner.id != request.user.id:
-        # TODO: gérer l'erreur autrement
-        raise("Erreur : this is not your point d'eau !!")
+        raise PermissionDenied
 
     if request.method == 'POST':
         form = PointEauForm(request.POST, instance=pe)

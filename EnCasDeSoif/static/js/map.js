@@ -6,7 +6,9 @@ function ajouterLocalisationActuelle(map)
         enableHighAccuracy: true
         },
         trackUserLocation: true
-        });
+        }
+        
+        );
     
     // Add the control to the map
     map.addControl(geolocalisation)
@@ -59,7 +61,7 @@ function addMap(allpe, token){
         "circle-color": [
         "step",
         ["get", "point_count"],
-        "#51bbd6",
+        "#f962ae",
         100,
         "#f1f075",
         750,
@@ -95,7 +97,7 @@ function addMap(allpe, token){
         source: "pointsEau",
         filter: ["!", ["has", "point_count"]],
         paint: {
-        "circle-color": "#11b4da",
+        "circle-color": "#f962ae",
         "circle-radius": 8,
         "circle-stroke-width": 1,
         "circle-stroke-color": "#fff"

@@ -37,20 +37,21 @@
     },
     {
         "model": "auth.user",
-        "pk": 3,
+        "pk": 5,
         "fields": {
-            "password": "pbkdf2_sha256$150000$C9ROgB4pe1dI$41IERUNzfll8BjQ/5pYHbfCkLJ7JbrX0je+fBSf7ozo=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "staffUser",
-            "first_name": "",
-            "last_name": "",
-            "email": "staff.user@samplemail.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2019-05-09T13:08:43.987Z",
-            "groups": [],
-            "user_permissions": []
+          "password": "pbkdf2_sha256$150000$ZrxKkg6XXdbw$glAXqRj8v0gPWLCpU/nZ+w5hM9GRsbjm/gphNcijXFI=",
+          "last_login": "2019-05-31T15:13:46.734Z",
+          "is_superuser": true,
+          "username": "sebviardot",
+          "first_name": "",
+          "last_name": "",
+          "email": "seb.viardot@gmail.com",
+          "is_staff": true,
+          "is_active": true,
+          "date_joined": "2019-05-31T15:13:32.194Z",
+          "groups": [],
+          "user_permissions": []
         }
-    }
+      }      
+
 ]

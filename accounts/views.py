@@ -1,43 +1,46 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from accounts.forms import RegistrationForm, EditProfileForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm, UserChangeForm, PasswordChangeForm
+from accounts.forms import EditProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pointsEau.models import PointEau
+from django.contrib.auth import login, authenticate
 from django.core import serializers
 from django.contrib import messages as msg
-
-
-def home(request):
-    # L'ajout du dossier accounts/ permet d'eviter la confusion avec
-    # le nom de la page, qui pourrait exister deux fois. Django prendrai le premier
-    # qu'il voit
-    numbers = [1, 2, 3, 4, 5]
-    name = "Matisse"
-    args = {'name': name, 'numbers': numbers}
-    return render(request, 'home.html', args)
-
+from EnCasDeSoif.views import index
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             # Sauvegarde dans la base
             form.save()
-            return redirect('/')
-        else:
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            msg.success(request, "Vous venez de créer un compte ! Bienvenue")
             return redirect('/')
     else:
-        form = RegistrationForm()
+        form = UserCreationForm()
 
-        args = {'form': form,
-                'active': 'register'
-                }
-        msg.success(request, "Vous venez de créer un compte ! Bienvenue")
-        return render(request, 'accounts/reg_form.html', args)
+    args = {'form': form, 'active': 'register'}
+    return render(request, 'accounts/reg_form.html', args)
 
+
+def login_user(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)    
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            msg.info(request, "Vous êtes maintenant connecté !")
+            return redirect('/')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'accounts/login.html', {'form':form})
 
 @login_required
 def view_profile(request):
@@ -84,7 +87,5 @@ def change_password(request):
 @login_required
 def view_logout(request):
     logout(request)
-    msg.info(request, "A bientôt !")
-    return render(request, 'index.html', {
-        'active': 'index'
-    })
+    msg.info(request, "A bientôt l'ami !")
+    return index(request)

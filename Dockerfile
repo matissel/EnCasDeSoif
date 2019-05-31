@@ -9,4 +9,4 @@ RUN apk update && apk add --no-cache \
 
 EXPOSE 8000 
 
-CMD [ "sh", "-c", "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000" ]
+CMD [ "sh", "-c", "python3 manage.py makemigrations && python3 manage.py migrate && python manage.py loaddata users pointsEau  &&  python3 manage.py runserver 0.0.0.0:8000 --insecure" ]

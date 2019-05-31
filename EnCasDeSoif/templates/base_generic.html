@@ -45,16 +45,27 @@
                         Points d'eau
                     </a>
                 </li>
+                
                 {% endif %}
                 <li class="nav-item {% if active == 'about' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'about' %}">A propos</a>
                 </li>
+                
+
+
             </ul>
             {% if user.is_authenticated %}
+            
             <ul class="navbar-nav  my-2 my-md-0">
+                {% if user.is_superuser %}
+                    <li class="nav-item ">
+                            <a class="nav-link {% if active == 'profile' %}active{% endif %}" href="{% url 'admin:index' %}">Administration</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item {% if active == 'profile' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'view_profile' %}">Mon profil</a>
                 </li>
+                
             </ul>
             <ul class="navbar-nav  my-2 my-md-0">
                     <li class="nav-item">
@@ -74,7 +85,7 @@
                 </li>
             </ul>
             {% endif%}
-
+                    
         </div>
     </nav>
 
