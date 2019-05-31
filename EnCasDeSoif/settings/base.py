@@ -20,7 +20,7 @@ load_dotenv()
 MAPBOX_PRIVATE_KEY = os.getenv('MAPBOX_PRIVATE_KEY')
 MAPBOX_LOGIN = os.getenv('MAPBOX_LOGIN')
 
-#TODO: SECURITY WARNING: keep the secret key used in production secret!
+# TODO: SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'y@r-ef#71*)c-zbe9h5&&1+0aamc%rg^q3u%i0+k2ws5#u--@('
 
 
