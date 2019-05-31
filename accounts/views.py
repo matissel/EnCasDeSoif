@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
 from accounts.forms import EditProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash, logout
@@ -10,6 +10,7 @@ from django.contrib.auth import login, authenticate
 from django.core import serializers
 from django.contrib import messages as msg
 from EnCasDeSoif.views import index
+
 
 def register(request):
     if request.method == 'POST':
@@ -32,7 +33,7 @@ def register(request):
 
 def login_user(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)    
+        form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -40,7 +41,8 @@ def login_user(request):
             return redirect('/')
     else:
         form = AuthenticationForm()
-    return render(request, 'accounts/login.html', {'form':form})
+    return render(request, 'accounts/login.html', {'form': form, 'active': 'login'})
+
 
 @login_required
 def view_profile(request):

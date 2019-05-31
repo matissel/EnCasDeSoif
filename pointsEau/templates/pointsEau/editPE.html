@@ -12,34 +12,35 @@
 
 {% block content %}
 <div class="container">
-    {{ form.non_field_errors }}
     <div class="row justify-content-center">
         <h1> Editer point d'eau </h1>
     </div>
     <div class="row justify-content-center">
     <form method="post">
         {% csrf_token %}
-        {{ form.non_field_errors }}
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert"> {{ form.non_field_errors.as_text }}</div>
+        {% endif %}
         <div class="form-row">
             <div class="form-group col-xs-6 col-md">
-                {{ form.nom.errors }}
                 <label for="{{ form.nom.id_for_label }}">Nom</label>
-                <input type="text" name="{{ form.nom.name }}" class="form-control" id="{{ form.nom.id_for_label }}" value="{{ form.nom.value }}">
+                <input type="text" name="{{ form.nom.name }}" class="form-control {% if form.nom.errors %}is-invalid{% endif %}" id="{{ form.nom.id_for_label }}" value="{{ form.nom.value }}">
+                {% if form.nom.errors %}<div class="invalid-feedback">{{ form.nom.errors.as_text }}</div>{% endif %}
             </div>
             <div class="form-group col-6 col-md">
-                {{ form.lat.errors }}
                 <label for="{{ form.lat.id_for_label }}">Latitude</label>
-                <input type="text" class="form-control" name="{{ form.lat.name }}" id="{{ form.lat.id_for_label }}" value="{{ form.lat.value }}">
+                <input type="text" class="form-control {% if form.lat.errors %}is-invalid{% endif %}" name="{{ form.lat.name }}" id="{{ form.lat.id_for_label }}" value="{{ form.lat.value }}">
+                {% if form.lat.errors %}<div class="invalid-feedback">{{ form.lat.errors.as_text }}</div>{% endif %}
             </div> 
             <div class="form-group col-6 col-md">
-                {{ form.long.errors }}
                 <label for="{{ form.long.id_for_label }}">Longitude</label>
-                <input type="text" class="form-control" name="{{ form.long.name }}" id="{{ form.long.id_for_label }}" value="{{ form.long.value }}">
+                <input type="text" class="form-control {% if form.long.errors %}is-invalid{% endif %}" name="{{ form.long.name }}" id="{{ form.long.id_for_label }}" value="{{ form.long.value }}">
+                {% if form.long.errors %}<div class="invalid-feedback">{{ form.long.errors.as_text }}</div>{% endif %}
             </div> 
             <div class="form-group col-12">
-                {{ form.desc.errors }}
                 <label for="{{ form.long.desc }}">Description</label>
-                <textarea type="text" class="form-control" name="{{ form.desc.name }}" id="{{ form.desc.id_for_label }}">{{ form.desc.value }}</textarea>
+                <textarea type="text" class="form-control {% if form.desc.errors %}is-invalid{% endif %}" name="{{ form.desc.name }}" id="{{ form.desc.id_for_label }}">{{ form.desc.value }}</textarea>
+                {% if form.desc.errors %}<div class="invalid-feedback">{{ form.desc.errors.as_text }}</div>{% endif %}
             </div> 
         </div>      
         <button type="submit" name="button" class="btn btn-primary">Valider</button>

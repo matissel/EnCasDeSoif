@@ -48,8 +48,7 @@ def delPE(request, pk):
     pe = PointEau.objects.get(pk=pk)
     # Si on essaye d'éditer un point d'eau pas à lui
     if pe.owner.id != request.user.id:
-        # TODO: gérer l'erreur autrement
-        raise("Erreur : this is not your point d'eau !!")
+        raise PermissionDenied
     pe.delete()
     ownerPeau = request.user.pointseau.all()
     return render(request, 'pointsEau/viewPE.html', {'pointseau': ownerPeau, 'active': 'pointseau'})
