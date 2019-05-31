@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.views.generic.base import TemplateView
+from django.conf.urls import handler400, handler403, handler404, handler500
+from django.conf import settings
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -26,3 +29,9 @@ urlpatterns = [
     path('pointsEau/', include('pointsEau.urls')),
     path('api/', include('pointsEau.api.urls'), name="api-pointseau"),
 ]
+
+if not settings.DEBUG:
+    #handler400 = 'common.views.bad_request'
+    handler403 = views.permission_denied
+    handler404 = views.page_not_found
+    handler500 = views.server_error
