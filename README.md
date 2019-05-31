@@ -53,6 +53,7 @@ Il est possible d'utiliser EnCasDeSoif en utilisant l'API REST suivante. Cette A
 |  lister/ |  /lister  |   /  |  /  |    /   |
 |  editer/<int:pk>  |  /  |   /  |  /editer/<int:pk>  |    /   |
 | pointsEau/<$id> |  /  |   /  |  /  |    /   |
+| supprimer/<int:pk>/ |  /  |  /  |  /  |    supprimer/<int:pk>  |
 | init/ |  /  |   /init  |  /  |    /   |
 
 ## Contribution 
