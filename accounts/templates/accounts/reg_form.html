@@ -2,57 +2,57 @@
 
 {% block content %}
 <div class="container">
-    <h1> Register </h1>
+    <h1> S'enregistrer </h1>
     <div class="row justify-content-center">
         <form method="post" data-toggle="validator" role="form">
             {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-6">
-                        {{ form.username.errors }}
-                        <label for="{{ form.username.id_for_label }}">Username</label>
-                        <input type="text" required class="form-control" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}">
-                        
+                    <label for="{{ form.username.id_for_label }}">Pseudo</label>
+                    <input type="text" required class="form-control {% if form.username.errors %}is-invalid{% endif %}" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}">
+                    {% if form.username.errors %}<div class="invalid-feedback">{{ form.username.errors.as_text }}</div>{% endif %}
                 </div>
                 
                 <div class="form-group col-md-6">
-                    {{ form.first_name.errors }}
-                    <label for="{{ form.first_name.id_for_label }}">First name</label>
-                    <input type="text" required class="form-control" name="{{ form.first_name.name }}" id="{{ form.first_name.id_for_label }}">
-                    
+                    <label for="{{ form.first_name.id_for_label }}">Prénom</label>
+                    <input type="text" required class="form-control {% if form.first_name.errors %}is-invalid{% endif %}" name="{{ form.first_name.name }}" id="{{ form.first_name.id_for_label }}">
+                    {% if form.first_name.errors %}<div class="invalid-feedback">{{ form.first_name.errors.as_text }}</div>{% endif %}
                 </div>
 
                 <div class="form-group col-md-6">
-                    {{ form.last_name.errors }}
-                    <label for="{{ form.last_name.id_for_label }}">Last name</label>
-                    <input type="text" required class="form-control" name="{{ form.last_name.name }}" id="{{ form.lastname.id_for_label }}">
-                    
+                    <label for="{{ form.last_name.id_for_label }}">Nom</label>
+                    <input type="text" required class="form-control {% if form.last_name.errors %}is-invalid{% endif %}" name="{{ form.last_name.name }}" id="{{ form.lastname.id_for_label }}">
+                    {% if form.last_name.errors %}<div class="invalid-feedback">{{ form.last_name.errors.as_text }}</div>{% endif %}
                 </div>
                 
                 <div class="form-group col-md-6">
-                    {{ form.email.errors }}
                     <label for="{{ form.email.id_for_label }}">Email</label>
-                    <input type="text" required class="form-control" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}">
-                    
+                    <input type="text" required class="form-control {% if form.email.errors %}is-invalid{% endif %}" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}">
+                    {% if form.email.errors %}<div class="invalid-feedback">{{ form.email.errors.as_text }}</div>{% endif %}
                 </div>
             
                 <div class="form-group col-md-6">
-                    {{ form.password1.errors }}
                     <label for="{{ form.password1.id_for_label }}">Mot de passe</label>
-                    <input type="password" required class="form-control" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}">
+                    <input type="password" required class="form-control {% if form.password1.errors %}is-invalid{% endif %}" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}">
                     <small id="passwordHelpInline" class="text-muted">
                             Must be 8-20 characters long.
                     </small>
+                    {% if form.password1.errors %}<div class="invalid-feedback">{{ form.password1.errors.as_text }}</div>{% endif %}
                 </div>
             
                 <div class="form-group col-md-6">
-                    {{ form.password2.errors }}
                     <label for="{{ form.password2.id_for_label }}">Confirmation mot de passe</label>
-                    <input type="password" required class="form-control" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}">
+                    <input type="password" required class="form-control {% if form.password2.errors %}is-invalid{% endif %}" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}">
                     <small id="passwordHelpInline" class="text-muted">
                             Must be 8-20 characters long.
                     </small>
+                    {% if form.password2.errors %}<div class="invalid-feedback">{{ form.password2.errors.as_text }}</div>{% endif %}
                 </div>
             </div>
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
+            {% endif %}
             <button class="btn btn-lg btn-primary outline" type="submit" name="button">Submit</button>
         </form>
     </div>

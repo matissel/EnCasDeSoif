@@ -21,33 +21,36 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            {{ form.non_field_errors }}
             <div class="row justify-content-center">
                 <h1> Nouveau point d'eau </h1>
             </div>
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert"> {{ form.non_field_errors.as_text }}</div>
+            {% endif %}
             <form method="post">
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-xs-6 col-md">
-                        {{ form.nom.errors }}
                         <label for="{{ form.nom.id_for_label }}">Nom</label>
-                        <input type="text" name="{{ form.nom.name }}" class="form-control" id="{{ form.nom.id_for_label }}" placeholder="Fontaine VH">
+                        <input type="text" name="{{ form.nom.name }}" class="form-control {% if form.nom.errors %}is-invalid{% endif %}" id="{{ form.nom.id_for_label }}" placeholder="Fontaine VH">
+                        {% if form.nom.errors %}<div class="invalid-feedback">{{ form.nom.errors.as_text }}</div>{% endif %}
                     </div>
                     <div class="form-group col-xs-6 col-md">
-                        {{ form.lat.errors }}
                         <label for="{{ form.lat.id_for_label }}">Latitude</label>
-                        <input type="text" class="form-control" name="{{ form.lat.name }}" id="{{ form.lat.id_for_label }}" placeholder="41.657">
+                        <input type="text" class="form-control {% if form.lat.errors %}is-invalid{% endif %}" name="{{ form.lat.name }}" id="{{ form.lat.id_for_label }}" placeholder="41.657">
+                        {% if form.lat.errors %}<div class="invalid-feedback">{{ form.lat.errors.as_text }}</div>{% endif %}
                     </div>
                     <div class="form-group col-md">
-                            {{ form.long.errors }}
                             <label for="{{ form.long.id_for_label }}">Longitude</label>
-                            <input type="text" class="form-control" name="{{ form.long.name }}" id="{{ form.long.id_for_label }}" placeholder="42.00998">
-                        </div>
+                            <input type="text" class="form-control {% if form.long.errors %}is-invalid{% endif %}" name="{{ form.long.name }}" id="{{ form.long.id_for_label }}" placeholder="42.00998">
+                            {% if form.long.errors %}<div class="invalid-feedback">{{ form.long.errors.as_text }}</div>{% endif %}
+                    </div>
+
                 </div>
                 <div class="form-group">
-                    {{ form.desc.errors }}
                     <label for="{{ form.desc.id_for_label }}">Description</label>
-                    <textarea type="text" class="form-control" name="{{ form.desc.name }}" id="{{ form.desc.id_for_label }}" placeholder="Une jolie fontaine où il est possible de s'abreuver sans modération !" rows="4"></textarea>
+                    <textarea type="text" class="form-control {% if form.desc.errors %}is-invalid{% endif %}" name="{{ form.desc.name }}" id="{{ form.desc.id_for_label }}" placeholder="Une jolie fontaine où il est possible de s'abreuver sans modération !" rows="4"></textarea>
+                    {% if form.desc.errors %}<div class="invalid-feedback">{{ form.desc.errors.as_text }}</div>{% endif %}
                 </div>
                 <div class="alert alert-info" role="alert">
                     Vous vous trouvez à côté du point d'eau ? Nous avons déjà mis les coordonnées pour vous 
