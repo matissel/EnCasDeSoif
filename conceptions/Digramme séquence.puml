@@ -1,0 +1,20 @@
+@startuml 
+title Diagramme Sequence : interraction avec l'API MapBox
+actor "Client" as C
+participant "Server" as S
+participant "MapBox" as M
+C -> S : Demande page avec carte
+activate S
+alt pas de token OU token expiré (toutes les 15 min)
+    S -> M : Authentification
+    activate M
+    M --> S : OK
+    S -> M : Besoin d'un token public
+    M -> M : Revoque ancien token
+    M -> M : Création nouveau token
+    M --> S : Nouveau token public
+    deactivate M
+end
+S --> C : Carte avec token public
+deactivate S
+@enduml

@@ -1,4 +1,5 @@
-Path ; GET ; POST ; PUT ; DELETE
-account/login ; / ; / ; / ; /
-pointsEau/all ; / ; / ; / ; /
-pointsEau/<$id> ; / ; / ; / ; /
+"<path\>";"GET";"POST";"PUT";"DELETE"
+"account/";"OK";":no_entry_sign:";":no_entry_sign:";":no_entry_sign:"
+"account/<int:pk>";"OK";":lock:";":lock:";":lock:"
+"pointsEau/";"OK";":lock:";":no_entry_sign:";":no_entry_sign:"
+"pointsEau/<int:pk>";"OK";":no_entry_sign:";":lock:";":lock:"
