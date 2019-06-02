@@ -73,7 +73,7 @@ Modèle de pointEau pour interragir avec l'API :
   "nom": "Fontaine foot",
   "lat": "43.09000000",
   "long": "34.00000000",
-  "desc": "Une fontaine fort sympatique à côté des stades de foot !",
+  "desc": "Une fontaine fort sympathique à côté des stades de foot !",
   "owner": "someOwner"
 }
 ```
