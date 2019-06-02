@@ -1,0 +1,15 @@
+@startuml
+title Diagramme des cas d'utilisation
+left to right direction
+actor :Utilisateur: as U
+U --> (Indiquer sa localisation)
+U --> (Voir les points d'eau)
+U --> (Ajouter/Modifier/Supprimer ses points d'eau)
+
+actor :Admin: as A
+U <|- A
+A --> (Ajouter/Modifier/Supprimer un utilisateur)
+A --> (Ajouter/Modifier/Supprimer les points d'eau)
+(Ajouter/Modifier/Supprimer ses points d'eau) ..>  (Ajouter/Modifier/Supprimer les points d'eau): <<extends>>
+
+@enduml
