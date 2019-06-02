@@ -6,7 +6,6 @@
 
 {% block scripts %}
 <script src="{% static 'js/currentLocPE.js' %}"></script>
-<script>window.onload = function(){fixerLocalisationCourante({{ form.lat.id_for_label|safe }}, {{ form.long.id_for_label|safe }});};</script>
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 {% endblock %}
 
