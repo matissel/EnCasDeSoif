@@ -64,5 +64,27 @@
         "desc": "A côté de l'accueil",
         "owner": 5
     }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 13,
+    "fields": {
+        "nom": "Fontaine VH",
+        "long": "5.72461369",
+        "lat": "45.18898099",
+        "desc": "Une belle fontaine en plein coeur du centre ville, \u00e0 Victor Hugo ! \r\nAttention eau non potable !!",
+        "owner": 1
+    }
+},
+{
+    "model": "pointsEau.pointeau",
+    "pk": 14,
+    "fields": {
+        "nom": "Fontaine Grenette",
+        "long": "5.72777289",
+        "lat": "45.19135205",
+        "desc": "Une belle fontaine en plein coeur du centre historique ! \r\nAttention eau non potable !!",
+        "owner": 1
+    }
 }
 ]
