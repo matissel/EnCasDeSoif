@@ -1,0 +1,22 @@
+@startuml
+title Diagramme de classes
+
+class PointEau{
+    +pk : int
+    +nom : string
+    +latitude : double [2,8]
+    +longitude : double [2,8]
+    +description : string
+}
+
+class User{
+    +id : int
+    +username : string
+    +email : string
+    +first_name : string
+    +last_name : string
+    -password : string
+}
+
+User "1" *-- "*" PointEau : possède >
+@enduml
