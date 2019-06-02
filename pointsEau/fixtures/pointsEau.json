@@ -1,79 +1,13 @@
 [
 {
     "model": "pointsEau.pointeau",
-    "pk": 1,
-    "fields": {
-        "nom": "Point eau 1",
-        "long": "34.00000000",
-        "lat": "43.09000000",
-        "desc": "Point eau 1",
-        "owner": 1
-    }
-},
-{
-    "model": "pointsEau.pointeau",
-    "pk": 2,
-    "fields": {
-        "nom": "Point eau 2",
-        "long": "54.09900000",
-        "lat": "12.09000000",
-        "desc": "Point eau 2",
-        "owner": 1
-    }
-},
-{
-    "model": "pointsEau.pointeau",
-    "pk": 3,
-    "fields": {
-        "nom": "Point eau 3",
-        "long": "22.00900000",
-        "lat": "34.00000000",
-        "desc": "Point eau 3",
-        "owner": 1
-    }
-},
-{
-    "model": "pointsEau.pointeau",
-    "pk": 4,
-    "fields": {
-        "nom": "Point eau 4",
-        "long": "34.00000000",
-        "lat": "43.09000000",
-        "desc": "Point eau 4",
-        "owner": 2
-    }
-},
-{
-    "model": "pointsEau.pointeau",
-    "pk": 5,
-    "fields": {
-        "nom": "Point eau 5",
-        "long": "54.09900000",
-        "lat": "12.09000000",
-        "desc": "Point eau 5",
-        "owner": 2
-    }
-},
-{
-    "model": "pointsEau.pointeau",
-    "pk": 6,
-    "fields": {
-        "nom": "Point eau 6",
-        "long": "22.00900000",
-        "lat": "34.00000000",
-        "desc": "Point eau 6",
-        "owner": 3
-    }
-},
-{
-    "model": "pointsEau.pointeau",
     "pk": 7,
     "fields": {
         "nom": "Les taillés université",
         "lat": "45.192124",
         "long": "5.759346",
         "desc": "A côté du tramway",
-        "owner": 3
+        "owner": 5
     }
 },
 {
@@ -84,7 +18,7 @@
         "lat": "45.193110",
         "long": "5.767058",
         "desc": "Rez de chaussé a gauche de l'escalier",
-        "owner": 3
+        "owner": 5
     }
 },
 {
@@ -95,7 +29,7 @@
         "lat": "45.194500",
         "long": "5.765519",
         "desc": "Au fond en rentrant",
-        "owner": 3
+        "owner": 5
     }
 },
 {
@@ -106,7 +40,7 @@
         "lat": "45.194215",
         "long": "5.7789519",
         "desc": "Derriere le grand saping",
-        "owner": 3
+        "owner": 5
     }
 },
 {
@@ -117,7 +51,7 @@
         "lat": "45.192305",
         "long": "5.770635",
         "desc": "Demandez à la secrétaire pour qu'elle ouvre",
-        "owner": 3
+        "owner": 5
     }
 },
 {
@@ -128,7 +62,7 @@
         "lat": "45.195567",
         "long": "5.767123",
         "desc": "A côté de l'accueil",
-        "owner": 3
+        "owner": 5
     }
 }
 ]

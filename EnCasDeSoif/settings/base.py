@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'accounts',
     'pointsEau',
     'rest_framework',
-    'EnCasDeSoif', 
+    'EnCasDeSoif',
     'ban'
 ]
 

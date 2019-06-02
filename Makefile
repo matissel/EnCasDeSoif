@@ -37,7 +37,7 @@ clean:
 	@rm -rf $(shell find `pwd` -name "__pycache__")
 # Clean database migration files
 	@rm -f $(shell find `pwd` -type f -name "[0-9]*_initial.py")
-	@rm -f `pwd`/db.sqlite3
+	@rm -f $(shell find `pwd` -type f -name "db.sqlite3")
 	@echo "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)"
 
 .PHONY: build migrate format test populateDB

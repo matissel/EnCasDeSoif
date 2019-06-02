@@ -56,11 +56,13 @@ def index(request, messages=[]):
 
     return render(request, 'index.html', args)
 
+
 def permission_denied(request, exception):
     context = {}
     return render(request, '403.html', context, status=403)
 
-def page_not_found(request,exception):
+
+def page_not_found(request, exception):
     context = {}
     return render(request, '404.html', context, status=404)
 
