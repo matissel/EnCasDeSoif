@@ -1,6 +1,6 @@
 autopep8==1.4.4
 Django>=2.2.3
-djangorestframework==3.9.3
+djangorestframework==3.11.2
 requests==2.21.0
 tblib==1.4.0
 selenium==3.141.0
